@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <top v-on:change-show="changeShow"></top>
+    <top v-on:change-slider="changeSlider"></top>
     <articles v-bind:name="name"></articles>
-    <sider v-if="show"></sider>
+    <slider v-if="show" v-on:change-slider="changeSlider" v-on:change-article="changeArticle"></slider>
     <router-view/>
     <bottom></bottom>
   </div>
@@ -11,7 +11,7 @@
 <script>
 import top from './components/top'
 import bottom from './components/bottom'
-import sider from './components/sider'
+import slider from './components/slider'
 import articles from './components/articles'
 export default {
   name: 'App',
@@ -22,12 +22,15 @@ export default {
     }
   },
   methods: {
-    changeShow: function () {
+    changeSlider: function () {
       this.show = !this.show
+    },
+    changeArticle: function (name) {
+      this.name = name
     }
   },
   components: {
-    top, bottom, sider, articles
+    top, bottom, slider, articles
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
 <header>
-    <button @click="$emit('change-show')"></button>
+    <button @click="$emit('change-slider')"></button>
     <span>Moeyua</span>
 </header>
 </template>
