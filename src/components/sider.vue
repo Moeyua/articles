@@ -10,6 +10,7 @@ export default {
 
 <style scoped>
     aside{
+        position: absolute;
         width: 300px;
         height: 100%;
         background: #d6e0f0;

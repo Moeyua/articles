@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <top v-on:change-show="changeShow"></top>
-    <main v-bind:name="name"></main>
+    <articles v-bind:name="name"></articles>
     <sider v-if="show"></sider>
     <router-view/>
     <bottom></bottom>
@@ -12,13 +12,13 @@
 import top from './components/top'
 import bottom from './components/bottom'
 import sider from './components/sider'
-import main from './components/main'
+import articles from './components/articles'
 export default {
   name: 'App',
   data () {
     return {
       show: false,
-      name: ''
+      name: '个人收藏的RSS订阅源 '
     }
   },
   methods: {
@@ -27,7 +27,7 @@ export default {
     }
   },
   components: {
-    top, bottom, sider, main
+    top, bottom, sider, articles
   }
 }
 </script>
