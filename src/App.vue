@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <top v-on:change-slider="changeSlider"></top>
-    <articles v-bind:name="name"></articles>
-    <slider v-if="show" v-on:change-slider="changeSlider" v-on:change-article="changeArticle"></slider>
+    <contents :list="list"></contents>
+    <slider v-if="show" v-on:change-slider="changeSlider" v-on:change-contents="changeContents"></slider>
     <router-view/>
     <bottom></bottom>
   </div>
@@ -12,32 +12,32 @@
 import top from './components/top'
 import bottom from './components/bottom'
 import slider from './components/slider'
-import articles from './components/articles'
+import contents from './components/contents'
 export default {
   name: 'App',
   data () {
     return {
       show: false,
-      name: '个人收藏的RSS订阅源 '
+      list: {}
     }
   },
   methods: {
     changeSlider: function () {
       this.show = !this.show
     },
-    changeArticle: function (name) {
-      this.name = name
+    changeContents: function (list) {
+      this.list = list
     }
   },
   components: {
-    top, bottom, slider, articles
+    top, bottom, slider, contents
   }
 }
 </script>
 
 <style>
 #app {
-  background: #f1f3f8;
+  background: #ffffff;
   width: 100%;
   height: 100%;
   position: absolute;

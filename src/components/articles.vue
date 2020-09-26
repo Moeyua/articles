@@ -1,5 +1,7 @@
 <template>
-  <iframe :src="src" frameborder="0" scrolling = "auto" seamless = "seamless"></iframe>
+  <div class="iframe-container">
+    <iframe :src="src" frameborder="0" scrolling = "auto" seamless = "seamless"></iframe>
+  </div>
 </template>
 
 <script>
@@ -13,10 +15,21 @@ export default {
 }
 </script>
 
-<style>
-iframe{
-  height: 100%;
-  width: calc(100% - 10px);
-  margin: 10px;
+<style scoped>
+.iframe-container {
+  position: relative;
+  padding-bottom: 200%;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
+}
+
+.iframe-container iframe {
+   position: absolute;
+   left: 0;
+   top: 0;
+   height: 100%;
+   width: 100%;
+   border: 0;
 }
 </style>

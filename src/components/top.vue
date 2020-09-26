@@ -1,35 +1,48 @@
 <template>
 <header>
-    <button @click="$emit('change-slider')"></button>
+    <button @click="$emit('change-slider')">
+        <img :src=src>
+    </button>
     <span>Moeyua</span>
 </header>
 </template>
 
 <script>
 export default {
+  computed: {
+    src: function () {
+      return '../static/list.png?time=' + new Date().getTime()
+    }
+  }
 }
 </script>
 
 <style scoped>
     header{
-        background: #8d93ab;
+        background: #212121;
         height: 50px;
         width: 100%;
         display: block;
         position: relative;
     }
     span{
-        font-size: 26px;
-        font-weight: 700;
+        font-size: 24px;
+        font-weight: 100;
         line-height: 50px;
-        letter-spacing: 3px;
+        letter-spacing: 4px;
         font-family: 'Times New Roman', Times, serif;
+        color: #ffffff;
     }
     button{
-        width: 24px;
-        height: 24px;
+        width: 50px;
+        height: 50px;
         position: absolute;
-        left: 20px;
-        top: 13px;
+        left: 0;
+        border: none;
+        background: none;
+    }
+    button img{
+        width: 25px;
+        height: 25px;
     }
 </style>
