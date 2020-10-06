@@ -26,6 +26,9 @@ export default {
 
 <style scoped>
 .articles{
+  position: relative;
+  top: 50px;
+  z-index: 1;
   display: block;
   height: 100px;
   width: calc(100% - 20px);

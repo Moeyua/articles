@@ -23,7 +23,8 @@ export default {
         height: 50px;
         width: 100%;
         display: block;
-        position: relative;
+        position: fixed;
+        z-index: 2;
     }
     span{
         font-size: 24px;

@@ -1,8 +1,13 @@
 <template>
   <div id="app">
+    <transition name="shadow">
+      <div id="shadow" v-if="show"></div>
+    </transition>
     <top v-on:change-slider="changeSlider"></top>
     <contents :list="list"></contents>
-    <slider v-if="show" v-on:change-slider="changeSlider" v-on:change-contents="changeContents"></slider>
+    <transition name="fade">
+      <slider v-if="show" v-on:change-slider="changeSlider" v-on:change-contents="changeContents"></slider>
+    </transition>
     <router-view/>
     <bottom></bottom>
   </div>
@@ -47,5 +52,29 @@ export default {
   display: flex;
   flex-flow: column;
   text-align: center;
+}
+#shadow{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: rgba(0,0,0,.4);
+  z-index: 11;
+}
+.shadow-enter-active, .shadow-leave-active {
+  transition: opacity .5s;
+}
+.shadow-enter, .shadow-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: all .3s ease-out;
+  transform: translateX(0);
+}
+.fade-enter, .fade-leave /* .fade-leave-active below version 2.1.8 */ {
+  transform: translateX(-100%);
+}
+.fade-leave-to{
+  transform: translateX(-100%);
 }
 </style>

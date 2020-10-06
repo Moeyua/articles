@@ -5,7 +5,7 @@
       <p>Moeyua's blog</p>
     </div>
     <div id="content">
-        <li v-for="item in list" :key="item.dir" @click="$emit('change-contents', item)">{{item.dir}}</li>
+        <li v-for="item in list" :key="item.dir" @click="choose(item)">{{item.dir}}</li>
     </div>
     <div id="back" @click="$emit('change-slider')"></div>
   </aside>
@@ -45,6 +45,10 @@ export default {
     }
   },
   methods: {
+    choose: function (item) {
+      this.$emit('change-contents', item)
+      this.$emit('change-slider')
+    }
   }
 }
 </script>
@@ -57,6 +61,7 @@ export default {
         left: 0;
         width: 100%;
         height: 100%;
+        z-index: 12;
     }
     #head{
       height: 300px;
@@ -72,7 +77,6 @@ export default {
     #back{
         width: calc(100% - 300px);
         height: 100%;
-        background: #00000087;
     }
     li{
       list-style: none;
