@@ -4,11 +4,12 @@
       <div id="shadow" v-if="show"></div>
     </transition>
     <top v-on:change-slider="changeSlider"></top>
-    <contents :list="list"></contents>
+
+    <router-view/>
+
     <transition name="fade">
       <slider v-if="show" v-on:change-slider="changeSlider" v-on:change-contents="changeContents"></slider>
     </transition>
-    <router-view/>
     <bottom></bottom>
   </div>
 </template>

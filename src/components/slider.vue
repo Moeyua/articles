@@ -5,8 +5,14 @@
       <p>Moeyua's blog</p>
     </div>
     <div id="content">
-        <li v-for="item in list" :key="item.dir" @click="choose(item)">{{item.dir}}</li>
+        <!-- <li v-for="item in list" :key="item.dir" @click="choose(item)">{{item.dir}}</li> -->
+        <router-link
+          v-for="item in list" :key="item.dir" @click="$emit('change-slider')"
+          :to="{name:'contents', params:{name:item.dir, lists:item}}">
+          {{item.dir}}
+        </router-link>
     </div>
+    <router-view></router-view>
     <div id="back" @click="$emit('change-slider')"></div>
   </aside>
 </template>
@@ -59,10 +65,6 @@ export default {
     }
   },
   methods: {
-    choose: function (item) {
-      this.$emit('change-contents', item)
-      this.$emit('change-slider')
-    }
   }
 }
 </script>
@@ -92,13 +94,15 @@ export default {
         width: calc(100% - 300px);
         height: 100%;
     }
-    li{
+    a{
+      display: block;
       list-style: none;
       height: 50px;
       padding: 0 30px;
       line-height: 50px;
+      text-decoration: none;
     }
-    li:hover{
+    a:hover{
       background:#ebebeb;
       font-weight: 700;
     }

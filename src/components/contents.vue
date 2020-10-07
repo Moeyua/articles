@@ -1,14 +1,16 @@
 <template>
-  <div>
-    <a :href="src(list.dir,item.name)" class="articles" v-for="item in list.items" :key="item.name">
-      {{title(item.name)}}
-    </a>
-  </div>
+    <div>
+    <h1>我是文章</h1>
+      <a :href="src(lists.dir,item.name)" class="articles"
+      v-for="item in this.$route.params.lists.items" :key="item.name">
+        {{title(item.name)}}
+      </a>
+    </div>
 </template>
 
 <script>
 export default {
-  props: ['list'],
+  props: ['lists'],
   data () {
     return {
 
