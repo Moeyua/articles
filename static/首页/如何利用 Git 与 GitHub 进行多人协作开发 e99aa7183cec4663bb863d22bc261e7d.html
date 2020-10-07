@@ -1,0 +1,627 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>如何利用 Git 与 GitHub 进行多人协作开发</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="e99aa718-3cec-4663-bb86-3d22bc261e7d" class="page sans"><header><h1 class="page-title">如何利用 Git 与 GitHub 进行多人协作开发</h1></header><div class="page-body"><p id="b739dc11-a556-474c-9ea7-65b30e2b35f4" class=""> 首先 “Fork” 他人的 repository（代码仓库）</p><p id="d86e5bec-9b73-4e5a-86c6-8eeca0be4583" class="">“Fork” 的名词是 “叉子” 的意思，不过这里取的是动词 “分叉，建一个分支” 的意思。进入你想参与合作开发的仓库界面，点击右上角的 <strong>“Fork”</strong> 图标，此时你已经复制了一个副本在你的 GitHub 仓库中了，或者是说一个新的代码仓库被创建了，可以打开你的 GitHub 主页看一看。</p><p id="27dc3a02-ef4f-4cee-9fe7-3fc9c34c7077" class=""><strong>注意，这个远程仓库是属于你自己的。这里 “Fork” 不同于 “Clone”，“Clone” 是发生在你的本地机器中，相当于你复制了一个完全相同的副本在你的终端上，但该副本的远程仓库连接的仍然是原作者的仓库，所以你并不是这个项目仓库的拥有者，没有更新它的权限。</strong></p><p id="e6773084-4bee-4a30-a55a-23ca957e9052" class="">因此，“Fork” 正是我们所需要的。</p><figure id="03aaf75b-eb3a-4683-8263-876ded98c685" class="image"><a href="http://upload-images.jianshu.io/upload_images/7182360-b3ed6042023a1fff.png"><img src="http://upload-images.jianshu.io/upload_images/7182360-b3ed6042023a1fff.png"/></a></figure><p id="ccbe3793-754a-4323-8a16-a45cada47b3d" class="">点击之后可以看到，自己帐号内有一个新的代码仓库被创建了。</p><figure id="f979dca3-95f6-400d-89ef-da6fd30edab6" class="image"><a href="http://upload-images.jianshu.io/upload_images/7182360-90edc9aa7094cea6.png"><img src="http://upload-images.jianshu.io/upload_images/7182360-90edc9aa7094cea6.png"/></a></figure><p id="b23f4035-23ef-4f30-8154-09317ccb9e00" class=""><strong>然后将这个代码仓库 “Clone”（克隆）到你的本地机器中，</strong>可以使用命令行或者 IDE（比如 Intellij IDEA）的 <strong>VCS</strong> 功能来实现。<strong>“Clone”</strong> 成功之后你就可以自主修改里面的内容，然后 <strong>“Push”</strong> 到远程仓库中，注意，这是你自己的远程仓库。<strong>但是不使用 “Fork”，而是直接 “Clone”（克隆）原作者的仓库的话，你会得到一个 “fatal: unable to access” 的提示，无法访问。</strong></p><p id="1a4da2f3-a036-40c8-9631-a5cff1d8a052" class=""><strong>在这一环节，所有的修改只发生在你的远程仓库中，原作者的代码仓库内容是不会发生任何改变的。这里最需要理解的是，“Clone” 下来的本地仓库连接的是你 GitHub 上的远程仓库。</strong></p><h2 id="43fd81be-c056-4483-b1e7-97e3433cc020" class="">2. 开始参与开发前的一些准备</h2><p id="3848aa77-c28a-484b-8e0b-90fac36e6598" class="">（1）在你做任何开发前，最好先详细阅读该项目的 <strong>CONTRIBUTING.md 文件</strong>。</p><p id="33d116ac-8ae4-4f2c-8a96-bde3f60c3efe" class="">（2）浏览该项目的 <strong>Issues（问题）</strong>公告，甚至可以自己创建一个 <strong>Issue</strong>。</p><p id="a30f24cb-1fb6-4871-866f-56fd0fc19cf1" class="">（3）一般不要将自己做的修改提交到 <strong>master branch（主分支）</strong>上，而是应该提交到某个明确的 <strong>topic branch（主题分支，解决某个 bug 或者添加某一功能的分支）</strong>上。<strong>注意，我们应该自己建一个 topic branch，然后在上面作修改，而不在 master 分支直接修改，因为这样更具有直观性。</strong></p><p id="ed5d4eaf-68e9-4108-accd-db621fbef10b" class="">（4）最好每次只提交较小的修改，并写好清晰明确的 <strong>Commit Messages（提交说明）</strong>.</p><p id="adcf21d8-d88e-4fe3-90a0-c72432c48acd" class="">（5）如果有需要，请更新 <strong>README 文件</strong>。</p><h2 id="8ec54e54-9aa6-4217-8f7e-305787cf3898" class="">3. 创建一个 Pull Request</h2><p id="6a1364d0-c7c5-4e81-9b67-c695bad4b5fa" class="">按自己的需要去修改项目内容，然后将所做的修改提交（Add+Commit）到自己的代码仓库，接着到仓库页面，点击 <strong>New pull request</strong> 按钮。</p><figure id="39525aef-3580-4e7e-8dbb-5fca488414c3" class="image"><a href="http://upload-images.jianshu.io/upload_images/7182360-c8cb87c688ef27e4.png"><img src="http://upload-images.jianshu.io/upload_images/7182360-c8cb87c688ef27e4.png"/></a></figure><p id="bfbb06af-f813-4edf-bbdf-387e54fa8066" class="">点击去之后可以看到，左边红框是你 “Fork” 的原项目仓库和分支，右边红框是你当前选择的项目仓库和分支。<strong>其实这里就是将两个红框内的内容作对比，并把不相同的地方显示出来。</strong>因为此时两个仓库和分支的内容是完全一样的，所有没有什么信息显示出来（我没有做修改）。不太理解的话，可以自由去尝试四个下拉框里不同的选项，很快你就会知道是怎么回事了。</p><figure id="320d3d65-2d59-486a-b20b-f36a516fe75e" class="image"><a href="http://upload-images.jianshu.io/upload_images/7182360-1f1068ed8816f440.png"><img src="http://upload-images.jianshu.io/upload_images/7182360-1f1068ed8816f440.png"/></a></figure><p id="a7b38db5-4ea4-4efe-8406-e24341f48ce9" class="">我这里任意选择了原项目的另一个分支，因为这两个分支不完全相同，所以可以看到出现了一个 <strong>“Create pull request”</strong> 的按钮，点击它。</p><figure id="5c887497-1142-4614-bcc2-304b252d2de8" class="image"><a href="http://upload-images.jianshu.io/upload_images/7182360-e360a51e1143cff9.png"><img src="http://upload-images.jianshu.io/upload_images/7182360-e360a51e1143cff9.png"/></a></figure><p id="8e79bfd3-7c59-4d3b-8ca3-b0ee95221f80" class="">填写你的请求信息，说明你做了些什么之类的。这个请求是发给该项目的维护者（拥有者）的，完成之后点击 <strong>“Create pull request”</strong> 按钮即可。</p><figure id="00d44a0e-bfb3-4190-a6ff-a78244c7ec47" class="image"><a href="http://upload-images.jianshu.io/upload_images/7182360-7f006873297bfb01.png"><img src="http://upload-images.jianshu.io/upload_images/7182360-7f006873297bfb01.png"/></a></figure><p id="ee5f6783-e9d2-40e3-881f-3e0692f9b21c" class=""><strong> 之后项目的维护者会受到你的请求，只要他 / 她通过了你的请求，你所做的修改就会被整合到原项目的仓库里了。</strong></p><figure id="ea8f8bcc-411c-4642-a5e2-77129a7d59e3" class="image"><a href="http://upload-images.jianshu.io/upload_images/7182360-1a3cd16c986807a5.png"><img src="http://upload-images.jianshu.io/upload_images/7182360-1a3cd16c986807a5.png"/></a></figure><p id="3bfcef98-9e8a-4db7-a4d6-580e1a2e77b3" class="">左边是你的本地仓库，中间是你在 GitHub 上 Fork 建立的仓库，右边是项目的原仓库。</p><h2 id="13eae1e8-d4d4-487e-bc7c-2f62a08eda0f" class=""><strong>4. 与原仓库保持同步更新</strong></h2><p id="87b78f76-ef49-41c0-845f-5c385b2c7652" class="">说到合作开发就会有一个问题，如何与他人的代码保持同步？在自己做开发的过程中，难免会遇到你 “Fork” 的项目已经有了新的更新，这时当然是希望自己仓库中的代码也能同步进行更新。可是，你本地仓库所连接的远程仓库的是你自己的 GitHub 仓库，而不是原作者的仓库。<strong>解决方法其实很简单，为你的本地仓库再添加一个远程仓库源。</strong></p><blockquote id="09c02ff7-b999-489f-b517-45d0ca6140ef" class="">查看当前项目所连接的远程仓库打开终端，进入到项目的 Git 仓库所在目录，一般就是项目目录，输入：git remote -v</blockquote><figure id="18f487ce-f7a1-4e1c-81e0-67994d304cc7" class="image"><a href="http://upload-images.jianshu.io/upload_images/7182360-991b23136847a966.png"><img src="http://upload-images.jianshu.io/upload_images/7182360-991b23136847a966.png"/></a></figure><p id="d33f2e70-4094-4b75-be55-1ab0e3358c58" class="">可以看到目前只连接了我自己的远程仓库。</p><blockquote id="c274c678-af2c-445b-b390-86266f9ce7f5" class="">添加原作者的远程仓库连接git remote add upstream https://github.com/GoogleChrome/lighthouse.git（注意替换原仓库的 http 链接）</blockquote><figure id="c799cf1b-d5d4-44f4-b534-70f593d4f252" class="image"><a href="http://upload-images.jianshu.io/upload_images/7182360-db7cccd18d647bed.png"><img src="http://upload-images.jianshu.io/upload_images/7182360-db7cccd18d647bed.png"/></a></figure><p id="cf5dd301-05a3-426f-9f34-b792b8b35091" class="">如图，现在已经成功添加原项目的远程仓库了。</p><blockquote id="997fe7cf-c0fe-4198-8b00-95753a48b4b5" class="">还差一点就大功告成了（1）从原仓库获取最新版本到本地git fetch upstream master（2）保证当前位于 master 分支上git checkout master（3）将最新版本整合到本地 master 分支上git merge upstream/master（4）将更新发送到自己的 GitHub 仓库里git push origin master</blockquote><blockquote id="e05dd7f9-2ddf-4e3d-a3a9-556555d0b57b" class="">（1）（2）（3）步可以用git pull upstream master这条命令替代，可以这样不太安全，因为你 fetch（获取）之后可以通过gitlog–oneline –graph –decorate –all来查看更新的情况，再决定是否 merge（整合）到一起。</blockquote><figure id="e3167550-a522-4e66-b59f-0536f749c1df" class="image"><a href="http://upload-images.jianshu.io/upload_images/7182360-6ea9373d40bcf92c.png"><img src="http://upload-images.jianshu.io/upload_images/7182360-6ea9373d40bcf92c.png"/></a></figure></div></article></body></html>

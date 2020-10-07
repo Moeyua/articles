@@ -1,0 +1,659 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>2020年9月2日</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="c0869648-00ee-4433-bb9a-e1f665de70fb" class="page sans"><header><h1 class="page-title">2020年9月2日</h1></header><div class="page-body"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="0f49384e-21e6-4bd7-843c-e5cb8421039d"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">HTML &lt;pre&gt; 元素表示预定义格式文本。在该元素中的文本通常按照原文件中的编排，以等宽字体的形式展现出来，文本中的空白符（比如空格和换行符）都会显示出来。(紧跟在 &lt;pre&gt; 开始标签后的换行符也会被省略)</div></figure><h3 id="1568da60-f287-44d1-914e-6e2ecd72acd3" class="">打开名为 &quot;window2&quot; 的新窗口的 JavaScript 语法是？</h3><p id="5fd18b20-f53b-4055-aa2c-33a80198d535" class="">open.new(&quot;http://www.w3school.com.cn&quot;,&quot;window2&quot;)</p><p id="339659ea-f09e-47c7-829e-70cebca63c0b" class="">new.window(&quot;http://www.w3school.com.cn&quot;,&quot;window2&quot;)</p><p id="710176b1-50f6-4ecb-96ad-51e08bc8da95" class="">new(&quot;http://www.w3school.com.cn&quot;,&quot;window2&quot;)</p><p id="a2d02da7-1dc1-4762-b24d-02a16686027c" class="">window.open(&quot;http://www.w3school.com.cn&quot;,&quot;window2&quot;)</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="4fe65f02-e769-432c-9c33-f530c9192d35"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">open() 方法可以查找一个已经存在或者新建的浏览器窗口。
+语法：
+window.open([URL], [窗口名称], [参数字符串])
+
+参数说明:
+
+URL：可选参数，在窗口中要显示网页的网址或路径。如果省略这个参数，或者它的值是空字符串，那么窗口就不显示任何文档。
+
+窗口名称：可选参数，被打开窗口的名称。
+
+    1.该名称由字母、数字和下划线字符组成。
+    2.&quot;_top&quot;、&quot;_blank&quot;、&quot;_selft&quot;具有特殊意义的名称。
+       _blank：在新窗口显示目标网页
+       _self：在当前窗口显示目标网页
+       _top：框架网页中在上部窗口中显示目标网页
+    3.相同 name 的窗口只能创建一个，要想创建多个窗口则 name 不能相同。
+    4.name 不能包含有空格。
+
+参数字符串：可选参数，设置窗口参数，各参数用逗号隔开。</div></figure><h3 id="f927c668-1048-4356-845e-a1428ec196a7" class="">关于提交表单的属性</h3><p id="e4d11469-4d1a-4d8c-9e6d-c413586cbf16" class="">
+</p><p id="8154609b-b75e-4bfe-8dad-fbf1ddfec909" class="">下列属性控制提交表单时的行为。</p><p id="6515fbfa-77f1-4715-9585-95a6d640c050" class=""><code><strong>action</strong></code></p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="e99ef8fc-c93a-4078-ade8-b7595cc859b5"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">处理表单提交的 URL。</div></figure><p id="5370a4a8-778d-4541-a90c-eceb81e5628e" class=""><code><strong>enctype</strong></code></p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="fa49ef8d-b0de-44e8-bcc3-571e9af4ace1"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">当 <code>method</code> 属性值为 <code>post</code> 时，<code>enctype</code> 就是将表单的内容提交给服务器的 <a href="http://en.wikipedia.org/wiki/Mime_type">MIME 类型</a> 。可能的取值有：
+<code>application/x-www-form-urlencoded</code>：未指定属性时的默认值。<code>multipart/form-data</code>：当表单包含 <code>type=file</code> 的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a> 元素时使用此值。
+<code>text/plain</code>：出现于 HTML5，用于调试。这个值可被 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/button"><code>&lt;button&gt;</code></a>、<a href="https://wiki.developer.mozilla.org/en-US/docs/Web/HTML/Element/input/submit"><code>&lt;input type=&quot;submit&quot;&gt;</code></a> 或 <a href="https://wiki.developer.mozilla.org/en-US/docs/Web/HTML/Element/input/image"><code>&lt;input type=&quot;image&quot;&gt;</code></a> 元素上的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/button#attr-formaction"><code>formaction</code></a> 属性覆盖。</div></figure><p id="20f4cd65-be06-486b-9188-8628baa3de1a" class=""><code><strong>method</strong></code></p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="be0447e5-7e1e-4309-b5a5-8ab216cd273b"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">浏览器使用这种 <a href="https://developer.mozilla.org/en-US/docs/HTTP">HTTP</a> 方式来提交 表单. 可能的值有：
+<code>post</code>：指的是 HTTP <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9.5">POST 方法</a>；表单数据会包含在表单体内然后发送给服务器.
+<code>get</code>：指的是 HTTP <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9.3">GET 方法</a>；表单数据会附加在 <code>action</code> 属性的 URL 中，并以 &#x27;?&#x27; 作为分隔符，<a href="https://wiki.developer.mozilla.org/en-US/docs/Glossary/Idempotent">没有副作用</a> 时使用这个方法。<code>dialog</code>：如果表单在 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/dialog"><code>&lt;dialog&gt;</code></a> 元素中，提交时关闭对话框。此值可以被 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/button"><code>&lt;button&gt;</code></a>、<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/input/submit"><code>&lt;input type=&quot;submit&quot;&gt;</code></a> 或 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/input/image"><code>&lt;input type=&quot;image&quot;&gt;</code></a> 元素中的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/button#attr-formmethod"><code>formmethod</code></a> 属性覆盖。</div></figure><p id="8c251821-42ab-4ee0-8d35-ed45f6320842" class=""><code><strong>novalidate</strong></code></p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="83582215-c3df-4b77-ad80-a5e26739ab5e"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">此布尔值属性表示提交表单时不需要验证表单。 如果没有声明该属性 （因此表单需要通过验证）。该属性可以被表单中的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/button"><code>&lt;button&gt;</code></a>、<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/input/submit"><code>&lt;input type=&quot;submit&quot;&gt;</code></a> 或 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/input/image"><code>&lt;input type=&quot;image&quot;&gt;</code></a> 元素中的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/button#attr-formnovalidate"><code>formnovalidate</code></a> 属性覆盖。</div></figure><p id="6fe1325a-acb8-4429-bcd9-3ac286a0e641" class=""><code><strong>target</strong></code></p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="9495708b-5973-408d-835c-a93fe36eb422"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">表示在提交表单之后，在哪里显示响应信息。在 HTML 4 中, 这是一个 frame 的名字/关键字对。在 HTML5 里，这是一个<em>浏览上下文</em> 的名字/关键字（如标签页、窗口或 iframe）。下述关键字有特别含义：<code>_self</code>：默认值。在相同浏览上下文中加载。
+<code>_blank</code>：在新的未命名的浏览上下文中加载。
+<code>_parent</code>：在当前上下文的父级浏览上下文中加载，如果没有父级，则与 _self 表现一致。
+<code>_top</code>：在最顶级的浏览上下文中（即当前上下文的一个没有父级的祖先浏览上下文），如果没有父级，则与 _self 表现一致。
+此值可以被 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/button"><code>&lt;button&gt;</code></a>、 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/input/submit"><code>&lt;input type=&quot;submit&quot;&gt;</code></a> 或 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/input/image"><code>&lt;input type=&quot;image&quot;&gt;</code></a> 元素中的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/button#attr-formtarget"><code>formtarget</code></a> 属性覆盖。</div></figure><h3 id="e76a8680-75e2-4b53-9d78-6256859c6d53" class="">css设置链接样式下列说法正确的是（）</h3><p id="f25b45ce-d5d9-4f46-b3a5-b4c45e524a97" class="">a:hover可以在a:visited 之前生效</p><p id="9e4e89ee-6746-4df5-bd6f-6c5df776e099" class="">a:hover可以在a:link之前生效</p><p id="052d1a77-b636-4838-826b-c15cc9d76df1" class="">a:active 必须位于 a:hover 之后</p><p id="31d915e4-8d5b-47b6-9fb7-886388659bea" class="">a:active - 链接被点击后的样式</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="2e589399-05db-44f8-8b12-150f161af8a3"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><code>link</code>: 链接平常的状态
+<code>visited</code>: 链接被访问过之后
+<code>hover</code>: 鼠标放到链接上的时候
+<code>active</code>: 链接被按下的时候
+
+正确顺序：“爱恨原则”（LoVe/HAte），即四种伪类的首字母:LVHA。再重复一遍正确的顺序：a:link、a:visited、a:hover、a:active .</div></figure></div></article></body></html>

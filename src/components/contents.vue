@@ -1,7 +1,7 @@
 <template>
   <div>
     <a :href="src(list.dir,item.name)" class="articles" v-for="item in list.items" :key="item.name">
-      {{item.name}}
+      {{title(item.name)}}
     </a>
   </div>
 </template>
@@ -18,6 +18,12 @@ export default {
     src: function () {
       return function (dir, name) {
         return '../../static/' + dir + '/' + name + '.html'
+      }
+    },
+    title: function () {
+      return function (name) {
+        var index = name.lastIndexOf(' ')
+        return name.substring(0, index)
       }
     }
   }
