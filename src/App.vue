@@ -5,11 +5,10 @@
     </transition>
     <top v-on:change-slider="changeSlider"></top>
 
-    <router-view/>
-
     <transition name="fade">
       <slider v-if="show" v-on:change-slider="changeSlider" v-on:change-contents="changeContents"></slider>
     </transition>
+    <router-view/>
     <bottom></bottom>
   </div>
 </template>
@@ -31,8 +30,9 @@ export default {
     changeSlider: function () {
       this.show = !this.show
     },
-    changeContents: function (list) {
-      this.list = list
+    changeContents: function (item) {
+      // eslint-disable-next-line no-unused-expressions
+      this.$router.push({name: 'contents', params: {name: item.dir, items: item.items}}).catch(err => { err })
     }
   },
   components: {

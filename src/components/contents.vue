@@ -1,8 +1,7 @@
 <template>
     <div>
-    <h1>我是文章</h1>
-      <a :href="src(lists.dir,item.name)" class="articles"
-      v-for="item in this.$route.params.lists.items" :key="item.name">
+      <a :href="src(item.name)" class="articles"
+      v-for="item in $route.params.items" :key="item.name">
         {{title(item.name)}}
       </a>
     </div>
@@ -10,16 +9,16 @@
 
 <script>
 export default {
-  props: ['lists'],
   data () {
     return {
-
+      // lists: this.$route.params.lists
     }
   },
   computed: {
     src: function () {
-      return function (dir, name) {
-        return '../../static/' + dir + '/' + name + '.html'
+      return function (name) {
+        console.log(this.$route.path.replace('/', ''))
+        return '../../static' + this.$route.path + '/' + name + '.html'
       }
     },
     title: function () {

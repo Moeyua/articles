@@ -5,14 +5,15 @@
       <p>Moeyua's blog</p>
     </div>
     <div id="content">
-        <!-- <li v-for="item in list" :key="item.dir" @click="choose(item)">{{item.dir}}</li> -->
-        <router-link
-          v-for="item in list" :key="item.dir" @click="$emit('change-slider')"
-          :to="{name:'contents', params:{name:item.dir, lists:item}}">
+        <!-- 因为路由跳转不在这里进行，所以这里改成了<li> -->
+        <li v-for="item in list" :key="item.dir"
+        @click="changeContents(item)">{{item.dir}}</li>
+        <!-- <router-link
+          v-for="item in list" :key="item.dir"
+          :to="{name:'contents', params:{name: item.dir, items: item.items}}">
           {{item.dir}}
-        </router-link>
+        </router-link> -->
     </div>
-    <router-view></router-view>
     <div id="back" @click="$emit('change-slider')"></div>
   </aside>
 </template>
@@ -38,6 +39,7 @@ export default {
             {name: 'DOM CSS操作 2e9c6d820b2748c189f5d91e2f67465b', sum: ''},
             {name: 'edge chrome修改flash版本的方法 e31eed645a8145dbaf4f3745bc73de0f', sum: ''},
             {name: 'JS定时器 1d12ba107b1948998526783f3cc78e5a', sum: ''},
+            {name: '在其他组件中渲染路由组件 149aebb8c8364693a3ab7740475d313b', sum: ''},
             {name: '前端面试常见知识点归纳 84317fb74b4c47cf9f8c6451f1925b20', sum: ''}]
         },
         {
@@ -65,6 +67,10 @@ export default {
     }
   },
   methods: {
+    changeContents: function (item) {
+      this.$emit('change-contents', item)
+      this.$emit('change-slider')
+    }
   }
 }
 </script>
@@ -94,7 +100,7 @@ export default {
         width: calc(100% - 300px);
         height: 100%;
     }
-    a{
+    li{
       display: block;
       list-style: none;
       height: 50px;
@@ -102,7 +108,7 @@ export default {
       line-height: 50px;
       text-decoration: none;
     }
-    a:hover{
+    li:hover{
       background:#ebebeb;
       font-weight: 700;
     }

@@ -13,7 +13,6 @@ export default new Router({
       path: '/',
       redirect: '/首页',
       children: [
-
       ]
     },
     {path: '/:name', name: 'contents', component: contents}
