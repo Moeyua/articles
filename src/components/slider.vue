@@ -45,6 +45,7 @@ export default {
         {
           dir: '做题笔记',
           items: [
+            {name: '递归+深度优先搜索解决路径总和问题 b44b5d253ccc4f48ac5be07ee9256bc1', sum: ''},
             {name: '2020年9月22日 31f869ced6e345a48e6ca58b5cf6550b', sum: ''},
             {name: '2020年9月17日 0965a55fdf1d488ebc97c2b02feac6b2', sum: ''},
             {name: '2020年9月15日 88aacda5a87d458c957402fb18ff3c68', sum: ''},

@@ -17,7 +17,6 @@ export default {
   computed: {
     src: function () {
       return function (name) {
-        console.log(this.$route.path.replace('/', ''))
         return '../../static' + this.$route.path + '/' + name + '.html'
       }
     },
