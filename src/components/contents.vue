@@ -1,20 +1,26 @@
 <template>
     <div>
       <a :href="src(item.name)" class="articles"
-      v-for="item in $route.params.items" :key="item.name">
+      v-for="item in list[index].items" :key="item.name">
         {{title(item.name)}}
       </a>
     </div>
 </template>
 
 <script>
+import store from '@/vuex/store'
 export default {
   data () {
     return {
-      // lists: this.$route.params.lists
     }
   },
   computed: {
+    list () {
+      return store.getters.get_list
+    },
+    index () {
+      return store.getters.get_index
+    },
     src: function () {
       return function (name) {
         return '../../static' + this.$route.path + '/' + name + '.html'

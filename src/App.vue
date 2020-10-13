@@ -14,29 +14,37 @@
 </template>
 
 <script>
+import store from '@/vuex/store'
+import { CHANGE } from '@/vuex/mutation_types'
 import top from './components/top'
 import bottom from './components/bottom'
 import slider from './components/slider'
-import contents from './components/contents'
 export default {
   name: 'App',
   data () {
     return {
-      show: false,
-      list: {}
+      show: false
     }
   },
   methods: {
+    change () {
+      store.commit(CHANGE, store.getters.get_index)
+    },
     changeSlider: function () {
       this.show = !this.show
     },
-    changeContents: function (item) {
-      // eslint-disable-next-line no-unused-expressions
-      this.$router.push({name: 'contents', params: {name: item.dir, items: item.items}}).catch(err => { err })
+    changeContents: function (index) {
+      store.commit(CHANGE, index)
     }
   },
+  computed: {
+    list () {
+      return store.getters.get_list
+    }
+  },
+  store,
   components: {
-    top, bottom, slider, contents
+    top, bottom, slider
   }
 }
 </script>

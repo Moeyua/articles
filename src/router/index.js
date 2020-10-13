@@ -11,9 +11,7 @@ export default new Router({
     // {path: '/', name: 'root', redirect: '/home'},
     {
       path: '/',
-      redirect: '/首页',
-      children: [
-      ]
+      redirect: '/首页'
     },
     {path: '/:name', name: 'contents', component: contents}
   ]
