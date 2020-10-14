@@ -1,0 +1,657 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>2020年8月20日</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="5696b17e-1034-4869-b729-333bb3d46dc7" class="page sans"><header><h1 class="page-title">2020年8月20日</h1></header><div class="page-body"><h3 id="550d6576-a0ed-4829-8d14-e5c014afa460" class="">1. 以下代码执行后，输出变量a的值为？（）</h3><pre id="3e458458-cec7-455d-a7ce-731dcea593e7" class="code code-wrap"><code>function test(a){
+	a=a+10;
+}
+var a=10;
+test(a);
+console.log(a);</code></pre><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="4c41b66c-7788-484b-8895-85cb5e1c859d"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><code>test(a);</code>这时的a是一个形参，属于函数内的局部变量，函数内的操作并不会影响到外面的a，只有不带参数时才是修改全局变量
+<strong>以不带参数的形式的修改才是全局修改！
+</strong><mark class="highlight-teal"><strong>10</strong></mark></div></figure><h3 id="ac2475c1-1839-4021-a69b-c9dc70d4c17c" class="">2. 关于 this 的工作原理，下面 4 种情况的描述哪一个是错误的？（）</h3><p id="c910bc90-d224-4033-a1d7-9707530d86b3" class="">A、在全局范围内，this指向全局对象（浏览器下指window）</p><p id="a6def28f-9e33-4ab5-9209-03442399da9f" class="">B、对象函数调用时，this指向当前对象</p><p id="be0da9b9-7ab7-45a8-8194-83365d83c108" class="">C、全局函数调用时，this指向全局函数</p><p id="4ac57f2d-4076-49e7-88cb-552250c9108f" class="">D、使用new实例化对象时，this指向新创建的对象</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="b69cd584-ba60-4c2e-b68e-60c2358461c7"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">this始终指向一个对象，全局函数调用时，this指向调用全局函数的对象
+<mark class="highlight-teal">C</mark></div></figure><h3 id="797010e8-8cb9-4378-94ad-bb9ad7db1b6f" class="">3. 以下代码执行后，5 秒后内控制台输出的信息是？</h3><pre id="d2db48c0-87e0-4dfe-b5f0-58d1f791cb8b" class="code code-wrap"><code>for(var i = 0; i &lt; 5; i++){
+setTimeout(function(){
+console.log(i);
+}, 1000 * i);
+}</code></pre><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="3c4e0466-c92f-46cd-bd88-799825d32b52"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">在所有同步任务执行完之前，任何的异步任务是不会执行的。
+<code>setTimeout</code>就是一个异步任务
+<mark class="highlight-teal">5 5 5 5 5</mark></div></figure><h3 id="d8fa28a2-b763-444a-9bfa-583cc6ea3b3b" class="">4. 以下代码执行时不会在控制台输出错误信息的是：</h3><p id="a636204d-51fa-41ff-9688-4600f4d4c31f" class="">
+</p><pre id="28d5ab39-57fa-4885-b183-845fe5fac158" class="code code-wrap"><code>let a = decodeURIComponent(&#x27;%&#x27;);</code></pre><pre id="bcbfb437-7bdb-44c0-adc4-2779b377e8f7" class="code code-wrap"><code>var a;a();function a() {console.log(a);}</code></pre><pre id="e771f45e-9b54-4cba-b06e-2c59670225df" class="code code-wrap"><code>Promise.reject(123).finally(a =&gt; {console.log(a);});</code></pre><pre id="0d981611-1189-4696-a87f-d7445fc4c6c3" class="code code-wrap"><code>var a = 1;let a = 2;console.log(a);</code></pre><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="c0374a6a-2c5e-45e4-9836-59ca25399789"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>A选项：</strong>decodeURIComponent（）里面的参数：必需。一个字符串，含有编码 URI 组件或其他要解码的文本。
+<strong>B选项：</strong>主要考察的是函数的提升和变量的提升，牢记一点：函数提升后的位置在变量提升后的位置之后，也就是相当于先声明一个var a，然后function a()函数提升了，将其覆盖，所以B选项无论在哪个位置打印a，输出的都是a这个函数
+<strong>D选项：</strong>let 和 var的区别  两个都是var的话下面会直接覆盖上面的，let的话重复定义会报错。
+<mark class="highlight-teal">B</mark></div></figure><h3 id="8ed25571-b9cd-4d29-89d0-671b82c91946" class="">5. 下面代码的输出结果</h3><pre id="2bc5eb94-45d0-4b03-87e2-10ee4f9bc047" class="code code-wrap"><code>(function() {
+      var a = b = 5;
+  })();   
+console.log(b);
+console.log(a);</code></pre><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="c0476cf0-524b-476c-9579-0ced95523bb3"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><code>var a = b = 5;</code>中的a是在函数中声明，属于局部变量，b没有声明，所以默认为全局变量，当函数执行完毕后，a被销毁，所以输出a会报错
+<mark class="highlight-teal">5，Uncaught ReferenceError: a is not defined</mark></div></figure><h3 id="108ecc3a-3919-408d-9b47-a4611dff0c72" class="">6. 在大数据量场景下，以下哪种js中字符串连接方式较为高效（ ）</h3><p id="f49d0112-64e8-49ee-b17b-03c6872d5fdf" class="">A、a+=b</p><p id="68cecc71-b740-498d-8ebe-4999818bbc47" class="">B、a = a+b</p><p id="7a2c0f33-0278-4b63-ab1e-40a6d20e9e37" class="">C、Array.join()</p><p id="c0ed77f3-8a3c-48d1-9154-b6bcfe991c4a" class="">D、Array.push()</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="ffce10d5-e489-4770-8242-3541640b691c"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">+的处理机制是：新建一个临时字符串，将新字符串赋值为<code>a+b</code>，然后返回这个临新字符串并同时销毁原始字符串，所以字符串连接效率较低。所以用<code>Array.join()</code>不会新建临时字符串效率更高。</div></figure><h3 id="44458c26-c4f1-47a9-80bf-54762f070123" class="">7. 语句var arr=[a,b,c,d];执行后，数组arr中每项都是一个整数，下面得到其中最大整数语句正确的是哪几项？</h3><p id="d75c5590-6b1d-4bd5-9282-5f7e7750afb0" class="">A、Math.max(arr)</p><p id="e4c6a9d3-1c7d-4621-8701-b08c3355b38b" class="">B、Math.max(arr[0], arr[1], arr[2], arr[3])</p><p id="93193e24-46a7-49e6-b12f-0a2d08179427" class="">C、Math.max.call(Math, arr[0], arr[1], arr[2], arr[3])</p><p id="e6889b15-d8c3-4e20-9d48-02e19b3dd19e" class="">D、Math.max.apply(Math,arr)</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="e38b78b8-4652-4931-86f1-c16be9f80854"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><code>Math.max(args...)</code>传入参数是任意数量的值
+A  传入数组,所以错误
+B  可以
+C  <code>Function.call()</code>可以传入任意多个参数,C正确
+D  <code>Function.apply()</code>第二个参数以数组形式传递,D正确</div></figure><h3 id="45e04402-003a-4514-a3f3-eb93cb0f651f" class="">8. 下面哪些方法可以用作javascript异步模式的编程？</h3><p id="d993d235-46ef-4528-8428-713da78339d8" class="">A、回调函数</p><p id="fd610605-a1af-4d39-b3ef-b15a12c0f02e" class="">B、事件监听</p><p id="a9d944e3-5547-44c8-bd08-21c117ffbb53" class="">C、发布/订阅</p><p id="d926f553-aa91-4620-99af-dbaf47553968" class="">D、Promises对象</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="a67dde15-3c41-4d35-acdc-d6e2ae4c7354"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">回调函数，这是异步编程最基本的方法。
+事件监听，另一种思路是采用事件驱动模式。任务的执行不取决于代码的顺序，而取决于某个事件是否发生。
+发布/订阅，上一节的&quot;事件&quot;，完全可以理解成&quot;信号&quot;。
+Promises对象，Promises 对象是CommonJS 工作组提出的一种规范，目的是为异步编程提供统一接口。</div></figure></div></article></body></html>

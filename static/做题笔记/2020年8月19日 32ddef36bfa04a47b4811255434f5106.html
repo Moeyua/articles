@@ -1,0 +1,652 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>2020年8月19日</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="32ddef36-bfa0-4a47-b481-1255434f5106" class="page sans"><header><h1 class="page-title">2020年8月19日</h1></header><div class="page-body"><nav id="baa7350b-dd32-412b-85b9-61ff85f78a99" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#c60b2459-be70-4471-b69c-25a008c10af5">下面有关JavaScript中 call和apply的描述，错误的是？</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#ae9f76ab-fb6f-4a58-895b-44f96f2b3dc1">apply传入的是一个参数数组，也就是将多个参数组合成为一个数组传入</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#306f3ff4-43b5-44b6-b4c7-12c4b2d3429c">call与apply都属于Function.prototype的一个方法，所以每个function实例都有call、apply属性</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3912ce50-8202-4672-ac84-5151d1b62e1c">两者传递的参数不同，call函数第一个参数都是要传入给当前对象的对象，apply不是</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#f0fe8b2f-0555-42e9-8dd3-7f44d8dc859b">call传入的则是直接的参数列表。call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#0e4fdf07-0faf-44a2-b4df-14dc9a99a2e7">分析下面javascript代码，输出结果为：</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3d579492-63d9-4696-8584-465b6b424d90">下面关于块内声明函数的做法哪些是正确的？</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#49f6eef4-a4e6-446c-b6db-86e24c5a86e5">if (x) { function foo() {}}</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#4d3864bd-0ff6-4b68-ac49-d34c993b6f8b">if (x) { var foo = function() {}}</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9f568f28-5a7d-4302-8242-f602ae1a0616">if (x) { foo = function() {}}</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#d278c0d2-c370-4f65-8d4c-56507d3363b6">ECMAScript明确的规范了块内函数，javascript实现了这个规范</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#5ca11fef-3dd8-4a64-9724-bc7f8f128884">以下哪一条Javascript语句会产生运行错误？</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#56bf257f-eaa4-4f2c-bb8e-ee302c9fd88c">var obj=( );</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#de7473f6-388c-4dcd-8d2d-f10ab8fd8acf">var obj=;</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#8a852ba0-374e-43b8-9fe2-da675aaf092c">var obj={ };</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b0589696-b729-48b9-8698-2682a564f3fa">var obj=/ /;</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#099d2f0b-06b1-48e9-afaa-51ff41f505b4">以下代码执行后，array的结果是？</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#7fd1ae6f-c1df-415f-a6f6-6d1f9c61b9f8">[10,-1,6,1,4,3]</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#c1b97a92-5de6-486e-9a0b-8b9976b8da37">[10,6,4,3,1,-1]</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#ed280b4e-f8bb-407a-a5f1-5561e5840b48">[3,4,1,6,-1,10]</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#fdb0ba55-e5dc-4ca2-867e-e10f425aee2c">[-1,1,3,4,6,10]</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#5207273d-5485-461b-b961-1af1f1dfc7b4">下列关于闭包描述正确的是？（）</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#4529930b-03fe-471e-a737-6f326e570e22">闭包内变量执行后不会被清除</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3548a5e9-3ac3-41b4-b95e-b783f1f774cd">闭包不满足链式作用域结构</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e46bf61-f1ac-4fe7-a64c-ee63c55e5655">(Function(){})()理论上是一个闭包</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#7ed2df24-4204-4895-8e93-40c0faaefc8a">闭包不耗内存，可以随意使用</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#4b5f8dc6-93d6-4d0e-941f-a95233dff1d1">以下哪些操作会触发Reflow：()</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#5e4c90c7-67d4-4152-8828-2ecd3a1352e7">alert(obj.className)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#30d1ee6b-4e0d-47cf-850e-34c7e5d5feb5">alert(obj.offsetHeight)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#60077301-9338-49c6-8f39-e7ee92c70c34">obj.style.height = “100px”</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#fdf68dfb-9b6d-4fd1-8a00-31936868a786">obj.style.color = “red”</a></div></nav><h2 id="c60b2459-be70-4471-b69c-25a008c10af5" class="">下面有关JavaScript中 call和apply的描述，错误的是？</h2><p id="14fe265e-7aeb-4ec0-9cd6-9b62b9964d0f" class="">
+</p><h3 id="ae9f76ab-fb6f-4a58-895b-44f96f2b3dc1" class="">apply传入的是一个参数数组，也就是将多个参数组合成为一个数组传入</h3><h3 id="306f3ff4-43b5-44b6-b4c7-12c4b2d3429c" class="">call与apply都属于Function.prototype的一个方法，所以每个function实例都有call、apply属性</h3><h3 id="3912ce50-8202-4672-ac84-5151d1b62e1c" class="block-color-teal">两者传递的参数不同，call函数第一个参数都是要传入给当前对象的对象，apply不是</h3><h3 id="f0fe8b2f-0555-42e9-8dd3-7f44d8dc859b" class="">call传入的则是直接的参数列表。call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="72ae20b6-ccfb-4bcb-b241-0c7614427caf"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">call的作用是用来绑定this对象的作用域，apply的作用和call相同，但apply的参数为（boject，array），call的参数为（object，a,b,c,d)
+call和apply都是属于function.prototype的方法</div></figure><h2 id="0e4fdf07-0faf-44a2-b4df-14dc9a99a2e7" class="">分析下面javascript代码，输出结果为：</h2><pre id="b75131b7-a9fa-4cfa-ab7d-59c9c460ff63" class="code"><code>&lt;script&gt;
+function out(x){
+var temp = 2;
+function inside(y){
+document.write( x + y + (temp--));
+}
+inside(5);
+}
+out(3);
+&lt;/script&gt;</code></pre><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="4bac3f4c-a5ad-4b0d-8b34-5660c97b5b94"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">实际代码的运行情况</div></figure><pre id="85daeb34-5e20-4dd1-8423-1aa4d81b35b7" class="code"><code>function out(x){
+var temp = 2;
+document.write( x + 5 + (temp--));
+}
+out(3);</code></pre><h2 id="3d579492-63d9-4696-8584-465b6b424d90" class="">下面关于块内声明函数的做法哪些是正确的？</h2><h3 id="49f6eef4-a4e6-446c-b6db-86e24c5a86e5" class="">if (x) { function foo() {}}</h3><h3 id="4d3864bd-0ff6-4b68-ac49-d34c993b6f8b" class="block-color-teal">if (x) { var foo = function() {}}</h3><h3 id="9f568f28-5a7d-4302-8242-f602ae1a0616" class="">if (x) { foo = function() {}}</h3><h3 id="d278c0d2-c370-4f65-8d4c-56507d3363b6" class="">ECMAScript明确的规范了块内函数，javascript实现了这个规范</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="55281114-d88f-4e56-bbc1-fa5e90f57da4"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">A：函数声明的形式定义函数有声明提升的特性，也就是不论是否进入if(x)，foo都定义了
+C：函数表达式形式，foo前无var，所以foo为全局变量</div></figure><h2 id="5ca11fef-3dd8-4a64-9724-bc7f8f128884" class="">以下哪一条Javascript语句会产生运行错误？</h2><h3 id="56bf257f-eaa4-4f2c-bb8e-ee302c9fd88c" class="block-color-teal">var obj=( );</h3><h3 id="de7473f6-388c-4dcd-8d2d-f10ab8fd8acf" class="">var obj=;</h3><h3 id="8a852ba0-374e-43b8-9fe2-da675aaf092c" class="">var obj={ };</h3><h3 id="b0589696-b729-48b9-8698-2682a564f3fa" class="">var obj=/ /;</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1263ecd8-5a5f-4374-a8e1-efd075bfd014"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><code>var obj=/ /</code>;是一个创建正则对象；若为<code>var obj=/ /</code>； 即赋值被注释掉，及运行被结束；</div></figure><h2 id="099d2f0b-06b1-48e9-afaa-51ff41f505b4" class="">以下代码执行后，array的结果是？</h2><pre id="9e3d060c-f4e3-469d-b975-771481c1c805" class="code code-wrap"><code>var array=[-1,1,3,4,6,10];
+array.sort((a,b)=&gt;Math.abs(a-3)-Math.abs(b-3));</code></pre><h3 id="7fd1ae6f-c1df-415f-a6f6-6d1f9c61b9f8" class="">[10,-1,6,1,4,3]</h3><h3 id="c1b97a92-5de6-486e-9a0b-8b9976b8da37" class="">[10,6,4,3,1,-1]</h3><h3 id="ed280b4e-f8bb-407a-a5f1-5561e5840b48" class="block-color-teal">[3,4,1,6,-1,10]</h3><h3 id="fdb0ba55-e5dc-4ca2-867e-e10f425aee2c" class="">[-1,1,3,4,6,10]</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="9b2dd2b6-f485-4af0-88fc-d3b6e3deaa26"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">&quot; <code>=&gt;</code>&quot;是箭头函数，<code>(a,b)=&gt;Math.abs(a-3)-Math.abs(b-3)</code>等同于</div></figure><pre id="df3d6e4a-c2e9-464c-aeb0-68ff5b85b90a" class="code code-wrap"><code>function(a,b){
+	return Math.abs(a-3)-Math.abs(b-3);
+}</code></pre><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="0d17425b-9567-4b31-af83-242207a706da"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">sort()支持自定义方式排序，可以传入一个函数作为参数。如果该函数的返回值大于0，表示第一个成员排在第二个成员后面；其他情况下，都是第一个元素排在第二个元素前面。</div></figure><h2 id="5207273d-5485-461b-b961-1af1f1dfc7b4" class="">下列关于闭包描述正确的是？（）</h2><p id="37267bcb-0e4d-4327-8a5b-644e46ec68a0" class="">
+</p><h3 id="4529930b-03fe-471e-a737-6f326e570e22" class="block-color-teal">闭包内变量执行后不会被清除</h3><h3 id="3548a5e9-3ac3-41b4-b95e-b783f1f774cd" class="">闭包不满足链式作用域结构</h3><h3 id="2e46bf61-f1ac-4fe7-a64c-ee63c55e5655" class="block-color-teal">(Function(){})()理论上是一个闭包</h3><h3 id="7ed2df24-4204-4895-8e93-40c0faaefc8a" class="">闭包不耗内存，可以随意使用</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="8855c057-055d-40de-b1bf-07702b15628e"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">链式作用域&quot;结构（chain scope），子对象会一级一级地向上寻找所有父对象的变量。所以，父对象的所有变量，对子对象都是可见的，反之则不成立。
+C：闭包可以访问其他函数内部变量的函数，而立即执行函数传参，相当于父级变量；闭包需要手动执行，不能自主释放内存；而立即执行函数相当于做了一次函数执行，最后释放内存。逻辑上立即执行函数可以理解为：声明闭包函数-执行-释放内存
+外层函数每次运行，都会生成一个新的闭包，而这个闭包又会保留外层函数的内部变量，所以内存消耗很大。因此不能滥用闭包，否则会造成网页的性能问题。</div></figure><h2 id="4b5f8dc6-93d6-4d0e-941f-a95233dff1d1" class="">以下哪些操作会触发Reflow：()</h2><pre id="cfe4a082-d22b-4505-8bb4-68b3f2c2a7de" class="code code-wrap"><code>var obj = document.getElementById(“test”);</code></pre><h3 id="5e4c90c7-67d4-4152-8828-2ecd3a1352e7" class="">alert(obj.className)</h3><h3 id="30d1ee6b-4e0d-47cf-850e-34c7e5d5feb5" class="block-color-teal">alert(obj.offsetHeight)</h3><h3 id="60077301-9338-49c6-8f39-e7ee92c70c34" class="block-color-teal">obj.style.height = “100px”</h3><h3 id="fdf68dfb-9b6d-4fd1-8a00-31936868a786" class="">obj.style.color = “red”</h3><p id="2a28a614-53c2-4779-8926-80658e0e0e3e" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="4a8b7439-6ba0-4192-92a7-edb279c0ce88"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">页面生成以后，脚本操作和样式表操作，都会触发“重流”（reflow）和“重绘”（repaint）。用户的互动也会触发重流和重绘，比如设置了鼠标悬停（<code>a:hover</code>）效果、页面滚动、在输入框中输入文本、改变窗口大小等等。
+重流和重绘并不一定一起发生，重流必然导致重绘，重绘不一定需要重流。比如改变元素颜色，只会导致重绘，而不会导致重流；改变元素的布局，则会导致重绘和重流。</div></figure><p id="b6a1ec52-e272-4a40-918f-503aa17ebec5" class="">
+</p></div></article></body></html>

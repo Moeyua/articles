@@ -1,0 +1,875 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>前端基础面试题 </title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="290dc88d-2fcd-4d0b-98c2-483e30a165a3" class="page sans"><header><h1 class="page-title">前端基础面试题 </h1></header><div class="page-body"><p id="ebd8f25a-3db5-4de4-b7e4-7b26680ec727" class="block-color-gray"><a href="https://zhuanlan.zhihu.com/p/92590306">https://zhuanlan.zhihu.com/p/92590306</a></p><p id="290321e4-9545-4941-a3c8-0835f4a02550" class="">
+</p><p id="f8f3f52f-5c42-4e18-992e-d8237fb5db5e" class="">本文主要是javascript和css方面的基础面试题，适合面试前以及平时复习食用。</p><p id="df98bffe-b99d-4a6b-8dae-19fc2259c2d7" class="">基础知识是前端一面必问的，如果你在基础知识这一块翻车了，就算你框架玩的再6，webpack、git、node学习的再好也无济于事，因为对方就不会再给你展示的机会，千万不要因为基础错过了自己心怡的公司。前端的基础知识杂且多，并不是理解就ok了，有些是真的要去记。当然了我们是牛x的前端工程师，每天像背英语单词一样去背知识点就没必要了，只要平时工作中多注意总结，面试前端刷下题目就可以了。</p><p id="77cc0f32-4939-432c-acd7-0beca672ca78" class="">什么？你问我要好的面试题文章，这不是就在你眼前吗</p><p id="2050dc39-d004-41c1-9c11-ad1d8d1f9245" class=""><strong>前端资源，戳下面的链接获取</strong></p><h2 id="4e05d68c-c8ac-4eab-9c7b-d9d4a5a0e022" class="">javascript篇</h2><h3 id="a1fb239e-2ee0-42cf-8372-a9bc1432f749" class=""><strong>一、数据类型</strong></h3><p id="c1f65b59-043e-41ce-a93a-64adc5adb5b4" class=""><strong>JavaScript 有几种类型</strong></p><ul id="9d9085a2-1ae0-4277-9381-fa3bdcad44f7" class="bulleted-list"><li>基本数据类型：undefined、null、boolean、number、string、symbol(es6的新数据类型)</li></ul><ul id="a82fab04-c256-45db-ae04-a1bbaa38150f" class="bulleted-list"><li>引用数据类型：object、array、function(统称为object)</li></ul><p id="cdd021a9-ee3d-49b4-9629-0bfefd222f19" class=""><strong>数据类型检测</strong></p><p id="80d1a4b0-34cb-4bd3-9723-e8dd524af1c5" class=""><code>typeof</code> 对于基本数据类型来说，除了 <code>null</code> 都可以显示正确的类型，typeof 对于对象来说，除了函数都会显示 object</p><pre id="6d939037-3ef4-483f-b70a-129beec3b013" class="code"><code>typeof 5 // &#x27;number&#x27;
+typeof &#x27;5&#x27; // &#x27;string&#x27;
+typeof undefined // &#x27;undefined&#x27;
+typeof false// &#x27;boolean&#x27;
+typeof Symbol() // &#x27;symbol&#x27;
+console.log(typeof null)  //object
+console.log(typeof NaN)   //number
+
+typeof [] // &#x27;object&#x27;
+typeof {} // &#x27;object&#x27;
+typeof console.log // &#x27;function&#x27;
+</code></pre><p id="279e8362-b7e1-4717-8182-168f3335a241" class=""><code>instanceof</code>通过原型链来判断数据类型的</p><pre id="c3082808-c2b6-4c3a-847d-4bf34a9dd00e" class="code"><code>p1 = new Person()
+p1 instanceof Person // true
+</code></pre><p id="af3a45e9-6fce-433c-8d0c-69c19dde275f" class=""><code>Object.prototype.toString.call()</code>可以检测所有的数据类型，算是一个比较完美的方法了。</p><pre id="127891aa-c30d-43d6-9227-91986f7ce00a" class="code"><code>var obj={}
+var arr=[]
+console.log(Object.prototype.toString.call(obj))    //[object Object]
+console.log(Object.prototype.toString.call(arr))    //[object Array]
+</code></pre><p id="90c27818-78b9-4d79-b3d6-58c2ce02c316" class=""><strong>深浅拷贝</strong></p><p id="a614ff27-f01e-4222-83b5-b8afd75f808f" class="">浅拷贝</p><pre id="863f11d7-e4f7-4f70-9bf5-84d0879fc9f4" class="code"><code>Object.assign()    //es6的方法
+</code></pre><p id="0ca1fbd0-8d69-4ae7-9c98-e93ff85496f6" class="">Object.assign会合并对象生成一个新对象。如果对象的属性是普通类型改变之后新对象不会改变，如果是引用类型改变后新对象也会改变，所以Object.assign实际上还是浅拷贝。</p><pre id="682439e6-edea-48cc-9a59-7816f80ac9ea" class="code"><code>var obj={aa:1,b:{item:&#x27;45&#x27;}};
+var newObj=Object.assign({},obj);
+obj.aa=2;
+obj.b.item=&#x27;kk&#x27;;
+console.log(newObj.aa);        //1
+console.log(newObj.b.item);    //kk
+</code></pre><p id="12729f83-3bd9-443a-b277-58706af51704" class="">深拷贝</p><p id="d0931f40-7802-4e0b-b4b3-4e87db4e1a57" class=""><code>JSON.parse(JSON.stringify(obj))</code></p><p id="3c27c31a-8764-490f-80f8-81d7bc1d468e" class="">利用JSON.stringify(obj)将对象先转为json字符串，再JSON.parse(）转回为json对象可以实现深拷贝，这也是比较常用的一种方法。</p><p id="1ef1534e-7559-4ff0-a5c3-4b25e0ab5b63" class=""><strong>用js实现一个深拷贝</strong></p><p id="0576d3de-ac4f-422d-b0e1-06aa586cb963" class="">其实深拷贝可以拆分成 2 步，<mark class="highlight-teal"><strong>浅拷贝 + 递归</strong></mark>，浅拷贝时判断属性值是否是对象，如果是对象就进行递归操作，两个一结合就实现了深拷贝。</p><pre id="d86ea0f8-a33a-4ad9-a03c-26155044bbb3" class="code"><code>  function cloneDeep(source) {
+      if (!isObject(source)) return source; // 非对象返回自身
+      var target = Array.isArray(source) ? [] : {};
+      for (var key in source) {
+        if (source.hasOwnProperty(i)) {
+          if (isObject(source[key])) {
+            target[key] = cloneDeep(source[key]); // 注意这里
+          } else {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    }
+    function isObject(obj) {
+      return typeof obj === &#x27;object&#x27; &amp;&amp; obj != null;
+    }
+</code></pre><h3 id="3991b02b-a072-47f1-9112-d82c54ff78ae" class=""><strong>二、作用域</strong></h3><p id="6312268d-966f-4c1a-ad17-76b1c4ef8dc4" class=""><strong>变量声明提升</strong></p><ul id="1604e1df-f2ab-4e16-b0b9-40d156dd78af" class="bulleted-list"><li>在 JavaScript 中，函数声明（function aa(){}）与变量声明（var）经常被 JavaScript 引擎隐式地提升到当前作用域的顶部。</li></ul><ul id="213524d7-2177-4945-a82f-206a080a3022" class="bulleted-list"><li>函数声明的优先级高于变量，如果变量名跟函数名相同且未赋值，则函数声明会覆盖变量声明</li></ul><ul id="7a7f50ae-df1c-4cdd-806e-5e00ad488591" class="bulleted-list"><li>声明语句中的赋值部分并不会被提升，只有变量的名称被提升</li></ul><p id="58e6365d-3472-40b8-b2ff-92f7442baa48" class=""><strong>作用域链</strong></p><p id="73ff4697-eb6f-459b-bb10-e7b523dca69a" class="">因为函数的嵌套形成作用域的层级关系。当函数执行时，从当前作用域开始搜，没有找到的变量，会向上层作用域查找，直至全局函数，这就是作用域链。</p><ul id="bdffad56-94c1-4e8f-bd14-04ce1aa6f3ee" class="bulleted-list"><li>在 JavaScript 中，作用域为 function(){}内的区域，称为函数作用域。</li></ul><ul id="ac540e29-bcd8-45c5-908b-8472695751d7" class="bulleted-list"><li>全局函数无法查看局部函数的内部细节，但局部函数可以查看其上层的函数细节，直至全局细节</li></ul><p id="35dbc6bd-e8ca-431f-8eb0-fe3c9fc88456" class=""><strong>闭包</strong></p><p id="ecb266fd-78b6-4564-8024-88d43a5d3d24" class="">闭包的原理就是作用域链，比函数F内部有一个函数G，函数 G可以访问到函数F中的变量，那么函数G就是闭包。</p><pre id="2bc4deb1-f7ac-451a-81a9-44a499764f76" class="code"><code>   function F() {
+      let a = 1
+      window.G = function () {
+        console.log(a)
+      }
+    }
+    F()
+    G() // 1
+</code></pre><h2 id="b42bc49f-4f74-4a85-ad4c-1385f981150f" class="">三、原型和继承</h2><p id="036422bf-e1bd-42bd-b693-82e01f77a1d5" class=""><strong>js 创建对象的几种方式</strong></p><p id="e3670498-bb19-48fd-ace5-858105cf8b0a" class="">对象字面量的方</p><pre id="cb5e3d4f-140c-4da8-808e-d7e7cff68e72" class="code"><code>var obj={};
+</code></pre><p id="038138aa-c717-4650-8202-6f2493ef2c76" class="">new一个构造函数</p><pre id="1872327e-fd4c-472f-b47e-8580bc8fbe2b" class="code"><code>function Pel(){}
+    var p=new Pel();
+    p.name=&quot;hu&quot;;
+    p.age=&quot;25&quot;;
+    p.address=function(){
+ }
+</code></pre><p id="69906f86-a017-4939-9d3f-403bcb33e544" class="">new一个内置对</p><pre id="e4a45cfa-8a3d-4b67-bda4-d4fa924d0ecc" class="code"><code>var obj=new Object();
+</code></pre><p id="1e7ec6f7-0f61-45eb-8f29-7ecff5e42f67" class="">Object.create（）创建对象</p><pre id="0279f651-13a5-4793-bedd-368588633f3e" class="code"><code>var test = Object.create({x:1});
+</code></pre><p id="5a54949f-1b79-4540-993e-b008e11e77d5" class="">给大家留一道思考题，new Object() 、 Object.create(）、{}，这三种方式创建对象有什么区别。</p><p id="2886ee5f-31de-45f8-a53d-471b2ba98484" class=""><strong>JS 如何实现一个类</strong></p><p id="11aa7d12-f2df-4d1b-820d-c370665c554b" class="">构造函数法</p><p id="07653062-5408-45bb-85d1-a494d416a67a" class="">缺点：用到了 this 和 prototype，编写复杂，可读性差</p><pre id="c41e3df9-315e-4297-98d5-8f81608f4d60" class="code"><code>function P(name, age){
+     this.name = name;
+     this.age= age;
+   }
+   P.prototype.sal= function(){
+      
+   }
+   var pel= new P(&quot;jj&quot;, 1);
+   pel.sell()
+</code></pre><p id="e36007bc-5904-468d-b858-1080da879726" class="">ES6 语法糖 class</p><pre id="4e7e1373-50e9-4154-9600-04762ec50358" class="code"><code>class Point {
+       constructor(x, y) {
+         this.x = x;
+         this.y = y;
+       }
+       toString() {
+         return &#x27;(&#x27; + this.x + &#x27;, &#x27; + this.y + &#x27;)&#x27;;
+       }
+     }
+  var point = new Point(2, 3);</code></pre><p id="7b535ef7-c673-47e1-943a-46a23e019a81" class=""><strong>原型链</strong></p><p id="45c6ccd7-9670-47db-9f94-c26fa20d2fc4" class="">一句话解析什么是原型链</p><blockquote id="11d0cac9-2864-4417-a58a-8629f1aaa3ee" class="">遍历一个实列的属性时，先遍历实列对象上的属性，再遍历它的原型对象，一直遍历到Object</blockquote><p id="9544aded-053a-4d4c-9e35-21d0ee4f651d" class="">任何一个类（函数）都有原型对象，原型对象至少有两个属性（constructor,<strong>proto</strong>）。constructor指向函数本身，<strong>proto</strong>指向父类原型对象。</p><p id="23fbcef7-785b-4356-9683-0917a236049f" class="">函数上有一个prototype属性，指向原型对象，通过它可以访问原型对象</p><p id="87328c9e-91bc-480a-a157-548b43fa0646" class="">函数的实列可以直接访问原型对象(因为实列上有<strong>proto</strong>指向构造函数的原型对象)</p><pre id="a7e97e6c-b48c-4283-9cd6-9b476d9b5e4f" class="code"><code>function Dog(){}        //类         
+var obj=new Dog();      //实列
+obj.name=&#x27;沪江&#x27;;
+Dog.prototype.name=&quot;旺财&quot;;
+Dog.prototype.eat=function(){
+    console.log(this.name);
+};
+console.log(Dog.prototype.name);  //旺财
+console.log(obj.prototype);      //undefined,prototype是类上才有的，实列上没有
+obj.eat();                       //沪江（先遍历实列对象上的属性，再遍历它的原型对象）
+</code></pre><h3 id="b92c8539-b8fe-4961-a120-1922316796df" class=""><strong>继承</strong></h3><p id="5853b8f4-0f6a-4550-be4e-68d26dece6f1" class=""><strong>Js如何实现继承？</strong></p><p id="d58d0768-e20b-4f1c-9b2e-9b9397ea31da" class="">构造函数绑定：使用 call 或 apply 方法，将父对象的构造函数绑定在子对象上</p><pre id="03e8d7ff-d8e9-4ffe-b0a9-80dfcc2d5aa3" class="code"><code>function Cat(name,color){
+ 　Animal.apply(this, arguments);
+ 　this.name = name;
+ 　this.color = color;
+}
+</code></pre><p id="16bb99d3-84c7-4cbd-a8f7-7bf5f274ad6d" class="">实例继承：将子对象的 prototype 指向父对象的一个实例</p><pre id="7fc5f1ac-fec2-44df-8bdf-3e9aa02b724d" class="code"><code>Cat.prototype = new Animal();
+Cat.prototype.constructor = Cat;
+</code></pre><p id="43cbb929-ad20-4cdd-b15f-c7b679c1c262" class="">拷贝继承：如果把父对象的所有属性和方法，拷贝进子对象</p><pre id="997834ee-4e30-49ce-9c58-4dd976360577" class="code"><code>function extend(Child, Parent) {
+　　　var p = Parent.prototype;
+　　　var c = Child.prototype;
+　　　for (var i in p) {
+　　　   c[i] = p[i];
+　　　}
+　　　c.uber = p;
+}
+</code></pre><p id="4460a206-a8db-4eda-a8ff-23b775d1a6e8" class="">原型继承：将子对象的 prototype 指向父对象的 prototype</p><pre id="b2b31704-77a1-4990-aded-6957687c3cab" class="code"><code>function extend(Child, Parent) {
+    var F = function(){};
+    　F.prototype = Parent.prototype;
+    　Child.prototype = new F();
+    　Child.prototype.constructor = Child;
+    　Child.uber = Parent.prototype;
+}
+</code></pre><p id="a5dab695-6c40-4563-a931-6a6daa9b189d" class="">ES6 语法糖 extends继承</p><pre id="ef644e8c-8a71-462e-ae18-078084f875ab" class="code"><code>class ColorPoint extends Point {
+    constructor(x, y, color) {
+        super(x, y); // 调用父类的constructor(x, y)
+        this.color = color;
+    }
+    toString() {
+        return this.color + &#x27; &#x27; + super.toString(); // 调用父类的toString()
+    }
+}
+</code></pre><h3 id="55978570-847c-4580-b6af-cb8d9cb780f4" class="">❤️篇幅有限，更详细的内容可以查看，下面这篇文章❤️</h3><h2 id="d65343f7-c884-417e-9817-85d8f50e5364" class="">四、new和this</h2><p id="45d3e09f-20f9-4ed8-94be-1acc647f8fc2" class=""><strong>new 操作符具体干了什么？</strong></p><blockquote id="58d0b217-72b8-4b16-839e-dca5f8648412" class="">当我们new一个数据的时候，new操作符到底做了什么？</blockquote><ul id="98f6ed93-3fd0-436c-bbb3-edbd6015df26" class="bulleted-list"><li>首先是创建实例对象{}</li></ul><ul id="fffed32a-bca9-4c50-96ef-e27efaa42b9a" class="bulleted-list"><li>this 变量引用该对象，同时还继承了构造函数的原型</li></ul><ul id="b3e5f710-6ce5-457c-90cf-8e0ae4051f66" class="bulleted-list"><li>其次属性和方法被加入到 this 引用的对象中</li></ul><ul id="e7433d3d-a3de-41ee-9e7a-5c5e4893e4f1" class="bulleted-list"><li>并且新创建的对象由 this 所引用，最后隐式的返回 this</li></ul><p id="a471d18b-36fc-4d6f-b292-69a352fe1fab" class=""><strong>new的模拟实现</strong></p><pre id="24ccac7f-2f3c-4ef6-9dfc-f92bc7344ac0" class="code"><code>function objectFactory() {
+
+    var obj = new Object(),//从Object.prototype上克隆一个对象
+
+    Constructor = [].shift.call(arguments);//取得外部传入的构造器
+
+    var F=function(){};
+    F.prototype= Constructor.prototype;
+    obj=new F();//指向正确的原型
+
+    var ret = Constructor.apply(obj, arguments);//借用外部传入的构造器给obj设置属性
+
+    return typeof ret === &#x27;object&#x27; ? ret : obj;//确保构造器总是返回一个对象
+
+};
+</code></pre><p id="dba93f2b-baa9-4fa3-a97c-b1c4bf7aa70c" class=""><strong>this 对象的理解</strong></p><p id="697a9764-4edb-43bf-a34e-dd478481769b" class="">普通函数</p><ul id="1d2b1181-da7a-42a7-bb27-1a92d0f6ce1f" class="bulleted-list"><li>this 总是指向函数的直接调用者</li></ul><ul id="30ee62d8-66a8-4063-a664-0590bc355c01" class="bulleted-list"><li>如果有 new 关键字，this 指向 new 出来的实例对象</li></ul><ul id="a1ba0f4b-77bc-4411-ac2c-d7ec2121b5eb" class="bulleted-list"><li>在事件中，this 指向触发这个事件的对象</li></ul><ul id="6b2d9750-ff83-475c-be70-7f9cd9bdc1a5" class="bulleted-list"><li>IE 下 attachEvent 中的 this 总是指向全局对象 Window</li></ul><ul id="43836c2b-60a7-4c2b-a64f-263a0c549012" class="bulleted-list"><li>箭头函数中，函数体内的this对象，就是定义时所在作用域的对象，而不是使用时所在的作用域的对象。</li></ul><pre id="47025b7e-1bd6-4841-95c7-1ee1e73eb77c" class="code"><code>function foo() {
+  console.log(this.a)
+}
+var a = 1
+foo()           //1       
+
+const obj = {
+  a: 2,
+  foo: foo
+}
+obj.foo()      //2
+
+const c = new foo()   //undefined
+</code></pre><ul id="d2713c2e-0d22-443b-b578-6dcf50948d34" class="bulleted-list"><li>对于直接调用 foo 来说，不管 foo 函数被放在了什么地方，this 一定是window</li></ul><ul id="1b1bd220-497f-4753-91a1-2a1ba86e2222" class="bulleted-list"><li>对于 obj.foo() 来说，我们只需要记住，谁调用了函数，谁就是 this，所以在这个场景下 foo 函数中的 this 就是 obj 对象</li></ul><ul id="fedd3bd3-da91-4817-afbc-a2806d8ceb93" class="bulleted-list"><li>对于 new 的方式来说，this 被永远绑定在了 new出来的对象上，不会被任何方式改变 this</li></ul><p id="037e4a14-0e0d-4c9e-8a7f-d2236bdafca1" class="">说完了以上几种情况，其实很多代码中的 this 应该就没什么问题了，下面让我们看看箭头函数中的 this</p><pre id="c820b2d0-70b5-4469-b593-217895e5208e" class="code"><code>function a() {
+  return () =&gt; {
+    return () =&gt; {
+      console.log(this)
+    }
+  }
+}
+a()()()        //Window
+</code></pre><ul id="5730414b-6b4a-442f-a9c8-f6ada15a7e85" class="bulleted-list"><li>首先箭头函数其实是没有 this 的，箭头函数中的 this 只取决包裹箭头函数的第一个普通函数的 this。在这个例子中，因为包裹箭头函数的第一个普通函数是 a，所以此时的 this 是 window。另外对箭头函数使用 bind这类函数是无效的。</li></ul><h3 id="44a2f977-83b6-4842-8ca0-013bd88c46bf" class="">五、apply、call、bind</h3><p id="3fb622d4-181b-43ce-bd12-ab04a24627b2" class=""><code>call</code>、<code>apply</code>和<code>bind</code>是<code>Function</code>对象自带的三个方法，都是为了改变函数体内部 <code>this</code> 的指向。<code>apply 、 call 、bind</code> 三者第一个参数都是 <code>this</code> 要指向的对象，也就是想指定的上下文；<code>apply 、 call 、bind</code> 三者都可以利用后续参数传参；
+bind 是返回对应 <strong>函数</strong>，便于稍后调用；<code>apply 、call</code> 则是立即调用 。</p><pre id="c0f703d8-3ede-48f5-ab7b-8daed504d2f6" class="code"><code>function fruits() {}
+
+fruits.prototype = {
+	color: &#x27;red&#x27;,
+	say: function() {
+		console.log(this.color);
+	}
+};
+
+var apple = new fruits();
+
+apple.say();   // red, 此时方法里面的this 指的是fruits
+
+banana = {color: &#x27;yellow&#x27;};
+apple.say.call(banana); //yellow,此时的this的指向已经通过call（）方法改变了，指向的是banana，this.color就是banana.color=&#x27;yellow&#x27;;
+
+apple.say.apply(banana);//yellow,同理，此时的this的指向已经通过apply（）方法改变了，指向的是banana，this.color就是banana.color =&#x27;yellow&#x27;;
+
+apple.say.apply(null); //undefined, null是window下的，此时，this 就指向了window ，但是window下并没有clolr这个属性，因此this.clolr就是window.color=undefined;
+</code></pre><p id="f3c911a0-186a-4a42-a794-943d2d7099a3" class="">call 传入参数列表
+apply 传入数组</p><pre id="91749959-06ea-4fcf-94b0-df431aad92e2" class="code"><code>var array1 = [12,&#x27;foo&#x27;];
+var array2 = [&#x27;Doe&#x27;,100];
+
+Array.prototype.push.call(array1, &#x27;Doe&#x27;,100)
+Array.prototype.push.apply(array1, array2)
+</code></pre><p id="b36a95e6-75a1-4fc2-ad88-504c09e5127c" class="">bind() 方法会创建一个 新函数，当调用这个新函数时，新函数会以创建它时传入 bind() 方法的第一个参数 作为 this，传入 bind() 方法的 第二个以及以后的参数加上绑定函数运行时本身的参数按照顺序作为原函数的参数来调用原函数。</p><pre id="d45b7775-5cfd-4484-bdb9-511ee187607f" class="code"><code>var bar = function(){
+	console.log(this.x);
+};
+var foo = {
+	x:3
+};
+bar();    // undefined
+var func = bar.bind(foo); 
+
+func(); // 3
+</code></pre><h2 id="ae3059f6-2f41-495a-8d08-cc46f04f6973" class="">六、数据处理</h2><p id="1f1782e9-af88-4fe4-a21d-c5faf1dd9076" class=""><strong>数组去重</strong></p><pre id="271a5a2c-e0cc-4560-88fa-4d3e5a880b30" class="code"><code>var arr=[&#x27;12&#x27;,&#x27;32&#x27;,&#x27;89&#x27;,&#x27;12&#x27;,&#x27;12&#x27;,&#x27;78&#x27;,&#x27;12&#x27;,&#x27;32&#x27;];
+    // 最简单数组去重法
+    function unique1(array){
+        var n = []; //一个新的临时数组
+        for(var i = 0; i &lt; array.length; i++){ //遍历当前数组
+            if (n.indexOf(array[i]) == -1)
+                n.push(array[i]);
+        }
+        return n;
+    }
+    arr=unique1(arr);
+</code></pre><p id="daaff35b-de04-4956-aa23-068a670200df" class=""><strong>排序</strong></p><pre id="0940f231-6166-42f5-8e09-1bb67903fea2" class="code"><code>/**
+	 * 按 sort 及  id 排序
+	 * @param {Object} a
+	 * @param {Object} b
+	 */
+ function   sortFun(a, b) {
+       return a.sort - b.sort == 0 ? a.id - b.id : a.sort - b.sort
+  };
+ arr.sort(sortFun)   //从小到大排序
+</code></pre><p id="3a3498ed-5b18-4e60-b225-f1035280029e" class=""><strong>递归求和</strong></p><pre id="a8a4af84-6477-4ea6-95d6-a097ac6cc084" class="code"><code>    function add(num1,num2){
+	var num = num1+num2;
+		if(num2+1&gt;100){
+		   return num;
+	         }else{
+	            return add(num,num2+1)
+	        }		   	
+     }
+     var sum =add(1,2)
+</code></pre><p id="8cd4d285-abc3-46cc-ae9f-16464449a3e8" class=""><strong>计算数组各项的重复次数</strong></p><pre id="0135efd9-e38b-4857-b98d-fb0c72762645" class="code"><code>var arr=[&#x27;胡将&#x27;,&#x27;胡将&#x27;,&#x27;hujiang&#x27;,&#x27;胡将&#x27;,&#x27;胡江&#x27;,&#x27;hujiang&#x27;];
+var obj={};
+arr.sort();    //先排序
+for(var i=0;i&lt;arr.length;){
+	var con=0;
+	for(var j=i;j&lt;arr.length;j++){
+		if(arr[i]===arr[j]){
+			con++
+		}
+	}
+	obj[arr[i]]=con; 
+	i=i+con;    //跳过重复的值
+}
+console.log(obj);  //{ hujiang: 2, &#x27;胡将&#x27;: 3, &#x27;胡江&#x27;: 1 }
+</code></pre><h2 id="49e26b7c-1391-4210-a03c-9dc346cd81f9" class="">七、Event Loop</h2><p id="0142405f-96c8-42b0-829c-0e5d8d212736" class=""><strong>宏任务/微任务</strong></p><p id="2accfac1-41ea-46f1-a0ba-92e54ad3902c" class="">除了广义的同步任务和异步任务，我们对任务有更精细的定义：</p><ol id="722b9eac-d465-4d3e-a2bf-1c17dec54509" class="numbered-list" start="1"><li>macro-task(宏任务)：当前调用栈中执行的任务称为宏任务。包括：script全部代码、setTimeout、setInterval、setImmediate（浏览器暂时不支持，只有IE10支持，具体可见）、I/O、UI Rendering。<p id="2bd920f6-6b35-42be-922c-fbabcc98c273" class=""><a href="https://link.zhihu.com/?target=https%3A//developer.mozilla.org/zh-CN/docs/Web/API/Window/setImmediate">MDN</a></p></li></ol><ol id="9591ee27-e6d5-49c5-a950-e406cfd92860" class="numbered-list" start="2"><li>.micro-task(微任务)： 当前（此次事件循环中）宏任务执行完，在下一个宏任务开始之前需要执行的任务为微任务。包括：Process.nextTick（Node独有）、Promise、Object.observe(废弃)、MutationObserver</li></ol><ol id="7227d331-79e0-44b9-82a0-617e73721679" class="numbered-list" start="3"><li>不同类型的任务会进入对应的Event Queue，宏任务中的事件放在callback queue中，由事件触发线程维护；微任务的事件放在微任务队列中，由js引擎线程维护。</li></ol><p id="61a8afcc-5346-4e42-a9d4-4d25b203ee05" class=""><strong>一句话解析下什么是event loop</strong></p><ul id="3e5ed270-e33c-476f-a0b8-8ad7353c5c16" class="bulleted-list"><li>主线程运行的时候会生成堆（heap）和栈（stack）；</li></ul><ul id="3d0932bd-4368-40ac-ab95-209834e60a1a" class="bulleted-list"><li>js 从上到下解析方法，将其中的同步任务按照执行顺序排列到执行栈中；</li></ul><ul id="0e2b331c-0ec7-4be9-baab-735ef0fad966" class="bulleted-list"><li>当程序调用外部的 API 时（比如 ajax、setTimeout 等），会将此类异步任务挂起，继续执行执行栈中的任务。等异步任务返回结果后，再按照顺序排列到事件队列中；</li></ul><ul id="7adb3cf8-36f9-4782-82ca-385e01d485c4" class="bulleted-list"><li>主线程先将执行栈中的同步任务清空，然后检查事件队列中是否有任务，如果有，就将第一个事件对应的回调推到执行栈中执行，若在执行过程中遇到异步任务，则继续将这个异步任务排列到事件队列中。</li></ul><ul id="8bfb02bb-ce07-4379-9040-6af6bf7c2302" class="bulleted-list"><li>主线程每次将执行栈清空后，就去事件队列中检查是否有任务，如果有，就每次取出一个推到执行栈中执行，这个循环往复的过程被称为“Event Loop 事件循环”</li></ul><h3 id="64202283-2fa0-4e91-81bd-60fea4a85090" class="">❤️篇幅有限，更详细的内容可以查看，下面这篇文章❤️</h3><h3 id="be7b4831-c80d-4e52-81bd-6e0048dc170d" class="">八、浏览器页面渲染过程</h3><p id="3ff039d2-2b4d-4e6f-a490-19c681d5b0fd" class="">浏览器渲染页面的一般过程：</p><p id="377f49d4-24b2-4a20-9db5-5cece1da0f2d" class="">1.浏览器解析html源码，然后创建一个 DOM树。并行请求 css/image/js在DOM树中，每一个HTML标签都有一个对应的节点，并且每一个文本也都会有一个对应的文本节点。DOM树的根节点就是 documentElement，对应的是html标签。</p><p id="6ae1d2db-95f2-4a08-8584-70c1b25cab1d" class="">2.浏览器解析CSS代码，计算出最终的样式数据。构建CSSOM树。对CSS代码中非法的语法它会直接忽略掉。解析CSS的时候会按照如下顺序来定义优先级：浏览器默认设置 &lt; 用户设置 &lt; 外链样式 &lt; 内联样式 &lt; html中的style。</p><p id="e911425c-ebe5-477e-80c2-2c391d1775a6" class="">3.DOM Tree + CSSOM --&gt; 渲染树（rendering tree）。渲染树和DOM树有点像，但是是有区别的。</p><p id="16143de8-bf5f-4cc2-9db0-0b08c0a3c860" class="">DOM树完全和html标签一一对应，但是渲染树会忽略掉不需要渲染的元素，比如head、display:none的元素等。而且一大段文本中的每一个行在渲染树中都是独立的一个节点。渲染树中的每一个节点都存储有对应的css属性。</p><p id="3010c28d-6d26-4877-a63d-58027d5ae938" class="">4.一旦渲染树创建好了，浏览器就可以根据渲染树直接把页面绘制到屏幕上。</p><p id="765b6149-c058-409a-bd62-02fee8a22184" class="">以上四个步骤并不是一次性顺序完成的。如果DOM或者CSSOM被修改，以上过程会被重复执行。实际上，CSS和JavaScript往往会多次修改DOM或者CSSOM。</p><h2 id="8c2bbeb3-c635-4535-894f-05406750d13d" class="">九、浏览器缓存</h2><p id="48bed7f2-50be-41f4-af3d-49510e2028be" class="">这块内容平时面试中问到比较多的就是<strong>强缓存和协商缓存</strong>了，下面这篇文章写的很好，我就不班门弄斧了，大家直接看这篇文章吧</p><h2 id="0e5a1657-2960-4c94-8033-23da86b96c56" class=""><strong>css篇</strong></h2><h2 id="6afa9f13-067d-48f2-89fc-98364fbb0263" class=""><strong>一、盒模型</strong></h2><p id="340f404b-66fa-430b-b8d6-f50d1dbe96a8" class="">盒模型的组成，由里向外content,padding,border,margin.</p><p id="ea89aa81-b45a-40fc-b012-98ba7dd77ebf" class=""><strong>在IE盒子模型中，width表示content+padding+border这三个部分的宽度</strong></p><p id="6dc234dd-51d3-47a4-8425-b29b06f960a4" class=""><strong>在标准的盒子模型中，width指content部分的宽度</strong></p><p id="41dda430-9006-4fb0-8681-50d32e55ec10" class="">box-sizing的使用</p><pre id="5cab7fa1-a66e-4ea6-a156-376bace89721" class="code"><code>box-sizing: content-box 是W3C盒子模型
+  box-sizing: border-box 是IE盒子模型</code></pre><p id="ac1ceaaf-e921-4621-9c47-bfaa899bbaee" class="">box-sizing的默认属性是content-box</p><h2 id="c36180d9-7e73-47bf-a074-6efd67847f42" class=""><strong>二、居中</strong></h2><p id="1653ef0e-6bb7-4ca6-a665-a9f4533e3126" class=""><strong>水平居中</strong></p><ul id="dbbf4cb6-90b1-4c45-b716-9f658decf5af" class="bulleted-list"><li>行内元素: <code>text-align: center</code></li></ul><ul id="3a81b48b-686b-4811-8e55-bb46bbc83d85" class="bulleted-list"><li>块级元素: <code>margin: 0 auto</code></li></ul><ul id="4eac52c0-2ebe-4677-83b0-3bc7e3a115f7" class="bulleted-list"><li>position:absolute +left:50%+ transform:translateX(-50%)</li></ul><ul id="63998146-9080-465d-a3c2-f5a48b532dce" class="bulleted-list"><li><code>display:flex + justify-content: center</code></li></ul><p id="06fe3a39-8976-4615-9c1b-65a6d20d8465" class=""><strong>垂直居中</strong></p><ul id="226e7e6b-1e4f-4fcd-adf4-752de2587209" class="bulleted-list"><li>设置line-height 等于height</li></ul><ul id="f2473759-6912-4f92-9590-897339d343ea" class="bulleted-list"><li>position：absolute +top:50%+ transform:translateY(-50%)</li></ul><ul id="fbbad8b3-d0db-4828-b2fd-0d4c5a6e33bc" class="bulleted-list"><li><code>display:flex + align-items: center</code></li></ul><ul id="e62d10db-2863-4241-8aaa-2dae2f249761" class="bulleted-list"><li>display:table+display:table-cell + vertical-align: middle;</li></ul><p id="4ebfe318-e625-45e5-a086-59778a758696" class="">//不知道宽高</p><pre id="a71ea506-b434-46e6-a955-60b773caaa44" class="code"><code>  width: 78px;
+  height: 78px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);</code></pre><p id="ceb12f96-c49f-454b-b9b3-6afdda8f5cd7" class="">//知道宽高</p><pre id="d80f4bdd-770e-4416-923e-15c131f4b8f0" class="code"><code>        height: 100px;
+        width: 100px;
+        position: absolute;
+        left:50%;
+        top: 50%;
+        margin-left: -50px;
+        margin-top: -50px;
+        display:flex;
+        justify-content: center;
+        align-content: center;</code></pre><p id="0c81a229-cfe0-4f2a-bee7-27b6f6c58e7a" class="">写在最后：</p><p id="ee9f15ef-8001-4c86-b4d5-5f2e768f19af" class="">面试是一个双向选择的过程，我们面试的时候不要把自己当成一个被挑选的弱势者。前端知识杂却多，有时面试结果不理想，不要怀疑自己。只是在某个方面自己还有欠缺，之后补上就可以了。我们不是在祈求别人给我们一份工作，我们只是在找寻一个适合我们的公司。不妄自菲薄更不骄傲自负，整理好心态，你一定能找到适合自己的公司！！！加油啊</p><p id="65c0879e-0c02-4225-947f-a6c5d52317ba" class="">前端知识点较杂且多，在学习过程中需要不断的总结。。。</p><p id="7331c1f3-70e2-43da-92e6-59194fca42a7" class=""><strong>❤️关注+点赞+收藏+评论+转发❤️</strong>，原创不易，鼓励笔者创作更好的文章</p><p id="f37b70f8-4531-4ea9-bb31-066266dd4017" class="">关注公众<strong>前端码头</strong>，分享独家学习路线+精品课程，更多前端小干货等着你喔</p><p id="5263468b-af19-4fc7-9abf-dcb063c0fac1" class=""><strong>前端面试资源，戳下面的链接获取</strong></p><p id="49aae195-3eb5-4ffd-8612-1381d97b3c53" class="">前端面试经典题目归类讲解，前端面试技巧全面解析</p><p id="1b22da03-74a0-4ef4-b658-8ddb12abc080" class="">面试难点深度剖析，让你面对原理性的题目不再无话可说</p></div></article></body></html>

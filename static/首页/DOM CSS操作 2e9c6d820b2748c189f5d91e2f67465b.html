@@ -1,0 +1,705 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>DOM CSS操作</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="2e9c6d82-0b27-48c1-89f5-d91e2f67465b" class="page sans"><header><h1 class="page-title">DOM CSS操作</h1></header><div class="page-body"><nav id="0208c4a4-d1ea-47b5-be9b-056d7b4c8d89" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#96b14aa4-e360-4d8b-81f9-400c9c5021e5">1. <mark class="highlight-pink"><strong>css操作方式</strong></mark></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#b0c7a8dd-b0a2-4517-b2ef-b697883ac229">2. <mark class="highlight-pink"><strong>cssStyleDeclaration实例属性</strong></mark></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#06cd855c-8fba-4c0f-a691-37b0fa06d3aa"><mark class="highlight-orange"><strong>CSSStyleDeclaration.cssText</strong></mark></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b6ca645a-bf83-4f3b-a12b-182709f7e9e7"><mark class="highlight-orange"><strong>CSSStyleDeclaration.length</strong></mark></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#87f5649b-86de-4b3a-9074-216d076a341c"><mark class="highlight-orange"><strong>CSSStyleDeclaration.parentRule</strong></mark></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#448da866-91f0-4ef5-a347-8c9a82e4919b">3. <mark class="highlight-pink"><strong>cssStyleDeclaration实例方法</strong></mark></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#7b2909cc-6cda-4583-848d-00a4b3ac7ba5"><mark class="highlight-orange"><strong>CSSStyleDeclaration.getPropertyPriority()</strong></mark></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#49e8d23b-12a8-4278-9f6a-35baa5812bd3">CSSStyleDeclaration.<mark class="highlight-orange">getPropertyValue</mark>()</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#20a30568-139c-417f-890c-d6f1b07f1c0f">CSSStyleDeclaration.item()</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#4ccf61a3-9cf7-4734-9ba3-92798dfb567f">CSSStyleDeclaration.removeProperty()</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a5cabe46-b9e1-4da1-ac1f-4ff2e0ccfab6">CSSStyleDeclaration.setProperty()</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#41d0ec22-fe81-4a40-a4f6-70a7f27da198">4. <mark class="highlight-pink"><strong>css模块侦测方法</strong></mark></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#ad9bf66e-3f41-4798-958b-dc15380cd51c">5. <strong>window.getComputedStyle()</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#78abc191-56cd-47ca-b107-37f9b402a380">6. <strong>添加样式表</strong></a></div></nav><h1 id="96b14aa4-e360-4d8b-81f9-400c9c5021e5" class="block-color-pink">1. <mark class="highlight-pink"><strong>css操作方式</strong></mark></h1><ul id="0934ad2d-df68-47ce-bf0f-9a352195ae9d" class="bulleted-list"><li>操作 CSS 样式最简单的方法，就是使用网页元素节点的getAttribute()方法、setAttribute()方法和removeAttribute()方法，直接读写或删除网页元素的style属性。
+</li></ul><pre id="a90df296-3a29-4178-801a-4cfd4c905b67" class="code"><code>div.setAttribute(
+  &#x27;style&#x27;,
+  &#x27;background-color:red;&#x27; + &#x27;border:1px solid black;&#x27;
+);</code></pre><ul id="581a24f3-9415-4d5f-af2c-3d02474ff1dd" class="bulleted-list"><li>CSSStyleDeclaration接口实现</li></ul><h1 id="b0c7a8dd-b0a2-4517-b2ef-b697883ac229" class="block-color-pink">2. <mark class="highlight-pink"><strong>cssStyleDeclaration实例属性</strong></mark></h1><h2 id="06cd855c-8fba-4c0f-a691-37b0fa06d3aa" class=""><mark class="highlight-orange"><strong>CSSStyleDeclaration.cssText</strong></mark></h2><p id="46a1ffa9-4688-4741-90b3-88176464ba2f" class=""><code>CSSStyleDeclaration.cssText</code>属性用来读写当前规则的所有样式声明文本。</p><pre id="9898164c-450e-4e90-a4ed-74abf9deb700" class="code code-wrap"><code>var divStyle = document.querySelector(&#x27;div&#x27;).style;
+
+divStyle.cssText = &#x27;background-color: red;&#x27;
+  + &#x27;border: 1px solid black;&#x27;
+  + &#x27;height: 100px;&#x27;
+  + &#x27;width: 100px;&#x27;;
+</code></pre><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="9cdef139-ec82-4566-9812-1b2868c3ae2f"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><code>cssText</code>的属性值不用改写 CSS 属性名。</div></figure><p id="34a84b9d-5aa7-4673-b6ec-343a69041eb3" class="">删除一个元素的所有行内样式，最简便的方法就是设置<code>cssText</code>为空字符串。</p><pre id="3f12c317-ef62-40dd-9598-9aaf6ffd074d" class="code code-wrap"><code>divStyle.cssText = &#x27;&#x27;;</code></pre><h2 id="b6ca645a-bf83-4f3b-a12b-182709f7e9e7" class=""><mark class="highlight-orange"><strong>CSSStyleDeclaration.length</strong></mark></h2><p id="7858496e-6024-4de1-9a8a-45d271d03088" class=""><code>CSSStyleDeclaration.length</code>属性返回一个整数值，表示当前规则包含多少条样式声明。</p><pre id="596ca4e0-5ba9-43e9-b757-3714e8fc8a65" class="code"><code>// HTML 代码如下
+// &lt;div id=&quot;myDiv&quot;
+//   style=&quot;height: 1px;width: 100%;background-color: #CA1;&quot;
+// &gt;&lt;/div&gt;
+var myDiv = document.getElementById(&#x27;myDiv&#x27;);
+var divStyle = myDiv.style;
+divStyle.length // 3</code></pre><h2 id="87f5649b-86de-4b3a-9074-216d076a341c" class=""><mark class="highlight-orange"><strong>CSSStyleDeclaration.parentRule</strong></mark></h2><p id="f07364e2-205e-4bbd-a0c0-2d318531e181" class=""><code>CSSStyleDeclaration.parentRule</code>属性返回当前规则所属的那个样式块（CSSRule 实例）。如果不存在所属的样式块，该属性返回<code>null</code>。</p><p id="4b2ea3f8-6124-4d60-b9c2-ed7269ac97eb" class="">
+</p><h1 id="448da866-91f0-4ef5-a347-8c9a82e4919b" class="block-color-pink">3. <mark class="highlight-pink"><strong>cssStyleDeclaration实例方法</strong></mark></h1><h2 id="7b2909cc-6cda-4583-848d-00a4b3ac7ba5" class=""><mark class="highlight-orange"><strong>CSSStyleDeclaration.getPropertyPriority()</strong></mark></h2><p id="5d99534d-5133-4780-8431-d25221625301" class=""><code>CSSStyleDeclaration.getPropertyPriority</code>方法接受 CSS 样式的属性名作为参数，返回一个字符串，表示有没有设置<code>important</code>优先级。如果有就返回<code>important</code>，否则返回空字符串。</p><pre id="e6d32b42-085e-4375-96cf-84772aaa33e2" class="code code-wrap"><code>// HTML 代码为
+// &lt;div id=&quot;myDiv&quot; style=&quot;margin: 10px!important; color: red;&quot;/&gt;
+var style = document.getElementById(&#x27;myDiv&#x27;).style;
+style.margin // &quot;10px&quot;
+style.getPropertyPriority(&#x27;margin&#x27;) // &quot;important&quot;
+style.getPropertyPriority(&#x27;color&#x27;) // &quot;&quot;
+</code></pre><p id="11645bd8-4424-469a-81ca-1aaecb7d5db4" class="">上面代码中，<code>margin</code>属性有<code>important</code>优先级，<code>color</code>属性没有。</p><h2 id="49e8d23b-12a8-4278-9f6a-35baa5812bd3" class="block-color-orange">CSSStyleDeclaration.<mark class="highlight-orange">getPropertyValue</mark>()</h2><p id="e830aa1f-e295-435d-9dbe-e7f274d7c608" class=""><code>CSSStyleDeclaration.getPropertyValue</code>方法接受 CSS 样式属性名作为参数，返回一个字符串，表示该属性的属性值。</p><pre id="9e5c00e2-e82c-4915-bb37-ad0067c33bd5" class="code"><code>// HTML 代码为
+// &lt;div id=&quot;myDiv&quot; style=&quot;margin: 10px!important; color: red;&quot;/&gt;
+var style = document.getElementById(&#x27;myDiv&#x27;).style;
+style.margin // &quot;10px&quot;
+style.getPropertyValue(&quot;margin&quot;) // &quot;10px&quot;</code></pre><h2 id="20a30568-139c-417f-890c-d6f1b07f1c0f" class="block-color-orange">CSSStyleDeclaration.item()</h2><p id="de6aa337-5f73-4696-8e27-a7e5afd36d6a" class=""><code>CSSStyleDeclaration.item</code>方法接受一个整数值作为参数，返回该位置的 CSS 属性名。</p><pre id="46dff332-c70d-43d6-9c50-afad9fe159db" class="code code-wrap"><code>// HTML 代码为
+// &lt;div id=&quot;myDiv&quot; style=&quot;color: red; background-color: white;&quot;/&gt;
+var style = document.getElementById(&#x27;myDiv&#x27;).style;
+style.item(0) // &quot;color&quot;
+style.item(1) // &quot;background-color&quot;
+</code></pre><p id="75f80170-2282-4b1f-b7f1-01305b41dbd3" class="">上面代码中，<code>0</code>号位置的 CSS 属性名是<code>color</code>，<code>1</code>号位置的 CSS 属性名是<code>background-color</code>。</p><p id="c4d60f07-01c8-4f1f-adfa-1b076db7a376" class="">如果没有提供参数，这个方法会报错。如果参数值超过实际的属性数目，这个方法返回一个空字符值。</p><h2 id="4ccf61a3-9cf7-4734-9ba3-92798dfb567f" class="block-color-orange">CSSStyleDeclaration.removeProperty()</h2><p id="9e58d1b5-5861-4b89-95fa-eacd0e234580" class=""><code>CSSStyleDeclaration.removeProperty</code>方法接受一个属性名作为参数，在 CSS 规则里面移除这个属性，返回这个属性原来的值。</p><h2 id="a5cabe46-b9e1-4da1-ac1f-4ff2e0ccfab6" class="block-color-orange">CSSStyleDeclaration.setProperty()</h2><p id="11423570-450c-4f90-9d69-9035100e12de" class=""><code>CSSStyleDeclaration.setProperty</code>方法用来设置新的 CSS 属性。该方法没有返回值。</p><p id="9ebd005e-6cbc-42d8-adbe-278a77f53efe" class="">该方法可以接受三个参数。</p><p id="0f194516-d35e-4936-8026-9dae687543a5" class="">第一个参数：属性名，该参数是必需的。第二个参数：属性值，该参数可选。如果省略，则参数值默认为空字符串。第三个参数：优先级，该参数可选。如果设置，唯一的合法值是<code>important</code>，表示 CSS 规则里面的<code>!important</code>。</p><pre id="9f37bae6-0908-4f6b-b57c-0dd718f73203" class="code code-wrap"><code>// HTML 代码为
+// &lt;div id=&quot;myDiv&quot; style=&quot;color: red; background-color: white;&quot;&gt;
+//   111
+// &lt;/div&gt;
+var style = document.getElementById(&#x27;myDiv&#x27;).style;
+style.setProperty(&#x27;border&#x27;, &#x27;1px solid blue&#x27;);</code></pre><p id="c65f72d1-497f-4504-baee-3cc9a21b12ac" class="">上面代码执行后，<code>myDiv</code>元素就会出现蓝色的边框。</p><h1 id="41d0ec22-fe81-4a40-a4f6-70a7f27da198" class="block-color-pink">4. <mark class="highlight-pink"><strong>css模块侦测方法</strong></mark></h1><p id="acca9ae6-992c-4fde-b9b5-1728e139bc25" class="">判断浏览器是否支持某个css模块的方法被称为<mark class="highlight-pink">css模块侦测方法</mark></p><p id="1cc25dcf-c3ab-429b-80a9-a1bb4dcb8402" class="">一般通过判断该元素的<code>style</code>对象的某个属性值是否为字符串来确定</p><pre id="14d327e9-f772-4bb6-9325-3659287ef7a1" class="code"><code>typeof element.style.animationName === &#x27;string&#x27;;
+typeof element.style.transform === &#x27;string&#x27;;</code></pre><p id="926a1318-cea3-4755-ae1c-7ad4d3211a44" class="">如果该css属性存在，会返回一个字符串，即使该属性从未设置过值也会返回一个空字符串，如果不存在，则会返回<code>undefined</code></p><p id="e536d0dc-4fbc-433a-9e17-6e6c87133c1c" class="">另外，使用的时候，需要把不同浏览器的 CSS 前缀也考虑进去。</p><pre id="248d8efe-7a8b-4aec-b2ec-e5d078a39a30" class="code code-wrap"><code>var content = document.getElementById(&#x27;content&#x27;);
+typeof content.style[&#x27;webkitAnimation&#x27;] === &#x27;string&#x27;</code></pre><p id="8659be00-6311-4d1e-8cf4-ce8f222d8a6f" class="">这种侦测方法可以写成一个函数。</p><pre id="07f7b49c-17ee-48d3-84c3-3c4065dcc41f" class="code"><code>function isPropertySupported(property) {
+  if (property in document.body.style) return true;
+  var prefixes = [&#x27;Moz&#x27;, &#x27;Webkit&#x27;, &#x27;O&#x27;, &#x27;ms&#x27;, &#x27;Khtml&#x27;];
+  var prefProperty = property.charAt(0).toUpperCase() + property.substr(1);
+
+  for(var i = 0; i &lt; prefixes.length; i++){
+    if((prefixes[i] + prefProperty) in document.body.style) return true;
+  }
+
+  return false;
+}
+isPropertySupported(&#x27;background-clip&#x27;)
+// true</code></pre><h1 id="ad9bf66e-3f41-4798-958b-dc15380cd51c" class="block-color-pink">5. <strong>window.getComputedStyle()</strong></h1><blockquote id="34bb1cb7-dbfe-4289-bc92-c40282f5412a" class="">行内样式（inline style）具有最高的优先级，改变行内样式，通常会立即反映出来。但是，网页元素最终的样式是综合各种规则计算出来的。因此，如果想得到元素实际的样式，只读取行内样式是不够的，需要得到浏览器最终计算出来的样式规则。</blockquote><p id="2d80f913-5bca-4f75-98f0-e0bef900a3fe" class=""><code>window.getComputedStyle</code>方法，就用来返回浏览器计算后得到的最终规则。它接受一个节点对象作为参数，返回一个 CSSStyleDeclaration 实例，包含了指定节点的最终样式信息。所谓“最终样式信息”，指的是各种 CSS 规则叠加后的结果。</p><pre id="a5cc1868-c8ef-4b2e-baf4-bd0eb1bce548" class="code code-wrap"><code>var div = document.querySelector(&#x27;div&#x27;);
+var styleObj = window.getComputedStyle(div);
+styleObj.backgroundColor
+</code></pre><p id="ddc7c41d-a28c-4bc0-b449-bffcb79e4d6e" class="">上面代码中，得到的背景色就是<code>div</code>元素真正的背景色。</p><p id="325ecca5-7ffb-4b94-9d37-87c3a7552b3b" class="">注意，CSSStyleDeclaration 实例是一个活的对象，任何对于样式的修改，会实时反映到这个实例上面。另外，这个实例是只读的。</p><p id="9c0acca5-1607-41c5-90ff-ce057fc8c847" class=""><code>getComputedStyle</code>方法还可以接受第二个参数，表示当前元素的伪元素（比如<code>:before</code>、<code>:after</code>、<code>:first-line</code>、<code>:first-letter</code>等）。</p><pre id="ee7135cf-0d18-40d0-95f5-9aac85eb898f" class="code code-wrap"><code>var result = window.getComputedStyle(div, &#x27;:before&#x27;)</code></pre><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="b69f8ec9-a837-4420-904d-542bf7182add"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">有几点需要注意。
+
+1. CSSStyleDeclaration 实例返回的 CSS 值都是绝对单位。比如，长度都是像素单位（返回值包括px后缀），颜色是rgb(#, #, #)或rgba(#, #, #, #)格式。
+2. CSS 规则的简写形式无效。比如，想读取margin属性的值，不能直接读，只能读marginLeft、marginTop等属性；再比如，font属性也是不能直接读的，只能读font-size等单个属性。
+3. 如果读取 CSS 原始的属性名，要用方括号运算符，比如styleObj[&#x27;z-index&#x27;]；如果读取骆驼拼写法的 CSS 属性名，可以直接读取styleObj.zIndex。
+4. 该方法返回的 CSSStyleDeclaration 实例的cssText属性无效，返回undefined。</div></figure><h1 id="78abc191-56cd-47ca-b107-37f9b402a380" class="block-color-pink">6. <strong>添加样式表</strong></h1><p id="32a1fc4c-86b2-4581-8710-e51f018c86e0" class="">网页添加样式表有两种方式。一种是添加一张内置样式表，即在文档中添加一个<code>&lt;style&gt;</code>节点。</p><pre id="d71d6b1a-cc31-40de-8f51-9efd215585f8" class="code code-wrap"><code>// 写法一
+var style = document.createElement(&#x27;style&#x27;);
+style.setAttribute(&#x27;media&#x27;, &#x27;screen&#x27;);
+style.innerHTML = &#x27;body{color:red}&#x27;;
+document.head.appendChild(style);
+
+// 写法二
+var style = (function () {
+  var style = document.createElement(&#x27;style&#x27;);
+  document.head.appendChild(style);
+  return style;
+})();
+style.sheet.insertRule(&#x27;.foo{color:red;}&#x27;, 0);
+</code></pre><p id="2c0ea306-6af1-4d83-89df-e2704815cda7" class="">另一种是添加外部样式表，即在文档中添加一个<code>&lt;link&gt;</code>节点，然后将<code>href</code>属性指向外部样式表的 URL。</p><pre id="2321e24c-f9c8-4660-a2de-9fdbea596140" class="code code-wrap"><code>var linkElm = document.createElement(&#x27;link&#x27;);
+linkElm.setAttribute(&#x27;rel&#x27;, &#x27;stylesheet&#x27;);
+linkElm.setAttribute(&#x27;type&#x27;, &#x27;text/css&#x27;);
+linkElm.setAttribute(&#x27;href&#x27;, &#x27;reset-min.css&#x27;);
+
+document.head.appendChild(linkElm);</code></pre><p id="4f04a924-261c-4bd9-abeb-0142bc6f1dbe" class="">
+</p></div></article></body></html>

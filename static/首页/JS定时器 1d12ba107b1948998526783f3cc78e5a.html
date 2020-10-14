@@ -1,0 +1,715 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>JS定时器</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1d12ba10-7b19-4899-8526-783f3cc78e5a" class="page sans"><header><h1 class="page-title">JS定时器</h1></header><div class="page-body"><blockquote id="05c1d411-a99f-4154-9036-6019e38f0775" class="">js的定时器功能主要由<code>setInterval()</code>和<code>setTimeout()</code>这两个函数来实现</blockquote><nav id="4cf69faf-527f-4086-bd04-dcb328584616" class="table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#925776cb-fefd-4cb7-8d74-ea613936ddb6">setTimeout()</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#cc26b15b-0c16-4af1-855a-24a74a8a28e5">setInterval()</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#646cfc22-631e-44f2-8687-c8d8b530e780">clearTimeout()，clearInterval()</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#5b26fa3c-f28f-4f29-8a23-240d838e2050">运行机制</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#233804e5-dc49-4ebb-b885-76cfc5da8dca">setTimeout(f, 0)</a></div></nav><h1 id="925776cb-fefd-4cb7-8d74-ea613936ddb6" class="">setTimeout()</h1><p id="1b488e72-237d-4c42-8c3a-4d94db767404" class="">
+</p><p id="2ed77138-e55c-4fcf-9a1a-cccd460aebc8" class=""><code>setTimeout</code>函数用来指定某个函数或某段代码，在多少毫秒之后执行。<mark class="highlight-pink"><strong>它返回一个整数</strong></mark>，表示定时器的编号，以后可以用来取消这个定时器。</p><pre id="07c3a4b7-fe46-4bd5-8468-b910824ca492" class="code code-wrap"><code>var timerId = setTimeout(func|code, delay);</code></pre><p id="b0aab414-2983-40c4-9c56-e7d9c842fb1d" class=""><code>setTimeout</code>函数接受两个参数，第一个参数<code>func|code</code>是将要推迟执行的函数名或者一段代码，第二个参数delay是推迟执行的毫秒数，默认为0。</p><p id="dc65adcd-3064-420d-b2ee-8b39deded066" class="">
+</p><pre id="b05d97d1-fe13-4074-8bab-bff61a3be11f" class="code"><code>console.log(1);
+setTimeout(&#x27;console.log(2)&#x27;,1000);
+console.log(3);</code></pre><p id="7556eb57-80e5-4dc8-8228-17dd70f6db7e" class="">上面代码会先输出1和3，然后等待1000毫秒再输出2。注意，<code>console.log(2)</code>必须以字符串的形式，作为<code>setTimeout</code>的参数。</p><p id="3d33a300-0737-46a0-8756-563f13ad27fa" class="">如果推迟执行的是函数，就直接将函数名，作为<code>setTimeout</code>的参数。</p><p id="69d3e9b2-c646-4f84-a55b-186bbd0816ce" class="">
+</p><p id="d5877dd5-157a-4490-a41f-83bc6e19c93e" class="">除了前两个参数，<code>setTimeout</code>还允许更多的参数。它们将依次传入推迟执行的函数（回调函数）。</p><pre id="975c0294-a4f4-43a9-8997-981ad2e32185" class="code code-wrap"><code>setTimeout(function (a,b) {
+  console.log(a + b);
+}, 1000, 1, 1);</code></pre><p id="fd12995b-8e55-410e-b8d1-a639c29fda35" class="">上面代码中，<code>setTimeout</code>共有4个参数。最后那两个参数，将在1000毫秒之后回调函数执行时，作为回调函数的参数。</p><p id="e9169de7-9b8e-40c4-8460-3f5d46103870" class="">
+</p><p id="205cd66d-fa49-405d-81e5-4678b22bbc0a" class="">还有一个需要注意的地方，如果回调函数是对象的方法，那么<code>setTimeout</code>使得方法内部的<code>this</code>关键字指向全局环境，而不是定义时所在的那个对象。</p><pre id="d4b5d5bd-0e93-4951-9694-d8c46eb6ea3d" class="code code-wrap"><code>var x = 1;
+
+var obj = {
+  x: 2,
+  y: function () {
+    console.log(this.x);
+  }
+};
+
+setTimeout(obj.y, 1000) // 1
+</code></pre><p id="f911b311-c4fe-401c-b5c9-a06f2e5f04dc" class="">上面代码输出的是1，而不是2。因为当<code>obj.y</code>在1000毫秒后运行时，<code>this</code>所指向的已经不是<code>obj</code>了，而是全局环境。</p><p id="14ada1c4-88c1-43a1-ad84-3813b6cbea83" class="">为了防止出现这个问题，一种解决方法是将<code>obj.y</code>放入一个函数。</p><pre id="f6bf746f-495f-4b6a-8db1-a60fedebcbf3" class="code code-wrap"><code>var x = 1;
+
+var obj = {
+  x: 2,
+  y: function () {
+    console.log(this.x);
+  }
+};
+
+setTimeout(function () {
+  obj.y();
+}, 1000);
+// 2
+</code></pre><p id="b99c501c-c7a7-4e5e-8d12-135dd3cbc1b7" class="">上面代码中，<code>obj.y</code>放在一个匿名函数之中，这使得<code>obj.y</code>在<code>obj</code>的作用域执行，而不是在全局作用域内执行，所以能够显示正确的值。</p><p id="ced6a03b-60cd-4e12-a047-91004cb27772" class="">另一种解决方法是，使用<code>bind</code>方法，将<code>obj.y</code>这个方法绑定在<code>obj</code>上面。</p><pre id="1b41a97f-3fd9-45a8-94af-53e713665709" class="code code-wrap"><code>var x = 1;
+
+var obj = {
+  x: 2,
+  y: function () {
+    console.log(this.x);
+  }
+};
+
+setTimeout(obj.y.bind(obj), 1000)
+// 2</code></pre><h1 id="cc26b15b-0c16-4af1-855a-24a74a8a28e5" class="">setInterval()</h1><p id="73397bee-21ec-49ab-889b-4a2c665852a1" class="">setInterval函数的用法与setTimeout完全一致，区别仅仅在于setInterval指定某个任务每隔一段时间就执行一次，也就是无限次的定时执行。</p><p id="a1c67a87-22f2-49ed-bdb7-b754a341d03f" class="">
+</p><p id="fdbb0a42-b42e-4b0c-9157-6fdccd890073" class=""><code>setInterval</code>指定的是“开始执行”之间的间隔，并不考虑每次任务执行本身所消耗的时间。因此实际上，两次执行之间的间隔会小于指定的时间。比如，<code>setInterval</code>指定每 100ms 执行一次，每次执行需要 5ms，那么第一次执行结束后95毫秒，第二次执行就会开始。如果某次执行耗时特别长，比如需要105毫秒，那么它结束后，下一次执行就会立即开始。</p><p id="3a832975-35f7-4eaa-b542-64299775927b" class="">为了确保两次执行之间有固定的间隔，可以不用<code>setInterval</code>，而是每次执行结束后，使用<code>setTimeout</code>指定下一次执行的具体时间。</p><pre id="2588e347-1c10-464e-b1ed-c7abe91f7066" class="code code-wrap"><code>var i = 1;
+var timer = setTimeout(function f() {
+  // ...
+  timer = setTimeout(f, 2000);
+}, 2000);
+</code></pre><p id="6a63bca7-3b44-4960-a10f-1c3e30383fdf" class="">上面代码可以确保，下一次执行总是在本次执行结束之后的2000毫秒开始。</p><h1 id="646cfc22-631e-44f2-8687-c8d8b530e780" class="">clearTimeout()，clearInterval()</h1><p id="d4484a11-eb8f-47d4-b4a1-2af09fbd54fd" class="">
+</p><p id="dd3526e1-2953-4f6c-a044-f32002b5c8ad" class=""><code>setTimeout</code>和<code>setInterval</code>函数，都返回一个整数值，表示计数器编号。将该整数传入<code>clearTimeout</code>和<code>clearInterval</code>函数，就可以取消对应的定时器。</p><pre id="307175db-70f8-4751-a1af-f8f072eab722" class="code code-wrap"><code>var id1 = setTimeout(f, 1000);
+var id2 = setInterval(f, 1000);
+
+clearTimeout(id1);
+clearInterval(id2);
+</code></pre><p id="8a2c8f6e-f5c8-4cb9-8968-964731759b2e" class="">上面代码中，回调函数<code>f</code>不会再执行了，因为两个定时器都被取消了。</p><p id="e2e1fb05-d060-4dd7-80f6-c3cf4e196d72" class=""><code>setTimeout</code>和<code>setInterval</code>返回的整数值是连续的，也就是说，第二个<code>setTimeout</code>方法返回的整数值，将比第一个的整数值大1。</p><pre id="2929c8d3-0f5c-4a45-8614-8855ab1ca473" class="code code-wrap"><code>function f() {}
+setTimeout(f, 1000) // 10
+setTimeout(f, 1000) // 11
+setTimeout(f, 1000) // 12</code></pre><p id="25b18614-ac24-44ac-ad01-c6a333eabc44" class="">上面代码中，连续调用三次<code>setTimeout</code>，返回值都比上一次大了1。</p><p id="9343ca21-c2e9-4651-9209-eb9d4239678f" class="">利用这一点，可以写一个函数，取消当前所有的<code>setTimeout</code>定时器。</p><pre id="898acee0-f71c-4836-8d57-fbf1428b486e" class="code code-wrap"><code>(function() {
+  // 每轮事件循环检查一次
+  var gid = setInterval(clearAllTimeouts, 0);
+
+  function clearAllTimeouts() {
+    var id = setTimeout(function() {}, 0);
+    while (id &gt; 0) {
+      if (id !== gid) {
+        clearTimeout(id);
+      }
+      id--;
+    }
+  }
+})();</code></pre><p id="cd077f65-d153-4eee-a6a9-21a9bea77817" class="">上面代码中，先调用<code>setTimeout</code>，得到一个计算器编号，然后把编号比它小的计数器全部取消。</p><h1 id="5b26fa3c-f28f-4f29-8a23-240d838e2050" class="">运行机制</h1><p id="f3a619d3-d47c-4ebc-b291-7ea746f803ba" class="">
+</p><p id="99839e93-e2b4-4781-9804-eb3e0abc5a44" class=""><code>setTimeout</code>和<code>setInterval</code>的运行机制，是将指定的代码移出本轮事件循环，等到下一轮事件循环，再检查是否到了指定时间。如果到了，就执行对应的代码；如果不到，就继续等待。</p><p id="b31a72b8-9b46-49c3-8beb-71f3fd1cad0f" class="">这意味着，<code>setTimeout</code>和<code>setInterval</code>指定的回调函数，必须等到本轮事件循环的所有同步任务都执行完，才会开始执行。由于前面的任务到底需要多少时间执行完，是不确定的，所以没有办法保证，<code>setTimeout</code>和<code>setInterval</code>指定的任务，一定会按照预定时间执行。</p><pre id="e83970e5-7b47-4a44-ba9c-3295369dc652" class="code code-wrap"><code>setTimeout(someTask, 100);
+veryLongTask();</code></pre><p id="0bc42b00-3f41-46ae-b43a-b12b202f7fc2" class="">上面代码的<code>setTimeout</code>，指定100毫秒以后运行一个任务。但是，如果后面的<code>veryLongTask</code>函数（同步任务）运行时间非常长，过了100毫秒还无法结束，那么被推迟运行的<code>someTask</code>就只有等着，等到<code>veryLongTask</code>运行结束，才轮到它执行。</p><p id="1da48eec-402e-4e92-a4b9-98eb96e36a58" class="">再看一个<code>setInterval</code>的例子。</p><pre id="026b777e-533d-488e-9140-5465a00e12c0" class="code code-wrap"><code>setInterval(function () {
+  console.log(2);
+}, 1000);
+
+sleep(3000);
+
+function sleep(ms) {
+  var start = Date.now();
+  while ((Date.now() - start) &lt; ms) {
+  }
+}</code></pre><p id="8b35420d-55a6-4c56-b15a-0b5c586f59bc" class="">上面代码中，<code>setInterval</code>要求每隔1000毫秒，就输出一个2。但是，紧接着的<code>sleep</code>语句需要3000毫秒才能完成，那么<code>setInterval</code>就必须推迟到3000毫秒之后才开始生效。注意，生效后<code>setInterval</code>不会产生累积效应，即不会一下子输出三个2，而是只会输出一个2。</p><h1 id="233804e5-dc49-4ebb-b885-76cfc5da8dca" class="">setTimeout(f, 0)</h1><p id="d61bc29b-f19f-4848-b8ae-1b3cd4f177c8" class="">setTimeout(f, 0)必须要等到当前脚本的同步任务，全部处理完以后，才会执行setTimeout指定的回调函数f。也就是说，setTimeout(f, 0)会在下一轮事件循环一开始就执行。</p><p id="383b8a6b-a93c-4aaa-b744-a8ae2efdcc3f" class="">
+</p><pre id="89bffb09-6fa1-4b97-97fc-5eb9d23ece1f" class="code"><code>setTimeout(function () {
+  console.log(1);
+}, 0);
+console.log(2);
+// 2
+// 1</code></pre><p id="bbd3e5a0-3d8e-417d-85e0-4e31ddace009" class="">上面代码先输出<code>2</code>，再输出<code>1</code>。因为<code>2</code>是同步任务，在本轮事件循环执行，而<code>1</code>是下一轮事件循环执行。</p><p id="5b707574-69a9-4b70-992d-313ca65f2f0d" class="">总之，<code>setTimeout(f, 0)</code>这种写法的目的是，尽可能早地执行<code>f</code>，但是并不能保证立刻就执行<code>f</code>。</p><p id="79b4ba0e-12a0-449a-b4b8-f57a28b236d5" class="">实际上，<code>setTimeout(f, 0)</code>不会真的在0毫秒之后运行，不同的浏览器有不同的实现。以 Edge 浏览器为例，会等到4毫秒之后运行。如果电脑正在使用电池供电，会等到16毫秒之后运行；如果网页不在当前 Tab 页，会推迟到1000毫秒（1秒）之后运行。这样是为了节省系统资源。</p><p id="5bd039e9-7bd8-4eb3-9489-d5086ec9686a" class="">
+</p></div></article></body></html>
